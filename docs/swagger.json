@@ -4,5 +4,40 @@
         "title": "Ninja Club",
         "version": "1.0.0",
         "description": "Ninja Club API"
+    },
+    "paths": {
+        "/members": {
+            "get": {
+                "tags": [
+                    "members"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "List of members": {
+                                        "value": [
+                                            "John Doe",
+                                            "Jane Smith",
+                                            "Peter Jones"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return a list of members"
+                    }
+                },
+                "summary": "get list of games from api",
+                "description": "Returns a list of all members in the API to the requesting user"
+            }
+        }
     }
 }
