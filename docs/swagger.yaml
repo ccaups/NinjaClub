@@ -6,6 +6,10 @@ info:
 paths:
     /members:
         get:
+            requestBody:
+                content:
+                    application/json: {}
+                required: true
             tags:
                 - members
             responses:
@@ -25,6 +29,64 @@ paths:
                     description: Return a list of members
             summary: Get list of members from api
             description: Returns a list of all members in the API to the requesting user
+        post:
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/member'
+                        examples:
+                            example of a member:
+                                value:
+                                    FirstName: Jane
+                                    LastName: Smith
+                                    Adress: Paju 5 Leht 3
+                                    Phonenumber: '5557772222'
+                                    Email: jane.smith@example.com
+                                    RegistrationDate: 12.06.2005
+                                    Active: false
+                                    Level: 4
+                required: true
+            tags:
+                - members
+            responses:
+                '201':
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: string
+                            examples:
+                                member that is added:
+                                    value: |-
+                                        [
+                                            [
+                                            "MemberID": 2,
+                                            "FirstName": "Jane",
+                                            "LastName": "Smith",
+                                            "Adress": "Paju 5 Leht 3",
+                                            "Phonenumber": "5557772222",
+                                            "Email": "jane.smith@example.com",
+                                            "RegistrationDate": "12.06.2005",
+                                            "Active": false,
+                                            "Level": 4
+                                            ]
+                                        ]
+                    description: Return code 201 to user if creation of new member was successful.
+                '400':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/error'
+                            examples:
+                                error:
+                                    value:
+                                        -
+                                            error: One or more parameters missing.
+                    description: 'Return status 400 to the user, if one or multiple parameters are missing.'
+            summary: Add new member
+            description: Add new member into the array.
     '/members/{id}':
         get:
             tags:
@@ -104,3 +166,34 @@ components:
                     type: string
             example:
                 error: Error message.
+        member:
+            title: Root Type for member
+            description: example of submittable member
+            type: object
+            properties:
+                FirstName:
+                    type: string
+                LastName:
+                    type: string
+                Adress:
+                    type: string
+                Phonenumber:
+                    type: string
+                Email:
+                    type: string
+                RegistrationDate:
+                    type: string
+                Active:
+                    type: boolean
+                Level:
+                    format: int32
+                    type: integer
+            example:
+                FirstName: Jane
+                LastName: Smith
+                Adress: Paju 5 Leht 3
+                Phonenumber: '5557772222'
+                Email: jane.smith@example.com
+                RegistrationDate: 12.06.2005
+                Active: false
+                Level: 4
