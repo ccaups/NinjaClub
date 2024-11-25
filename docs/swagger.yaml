@@ -1,0 +1,95 @@
+openapi: 3.0.2
+info:
+    title: Ninja Club
+    version: 1.0.0
+    description: Ninja Club API
+paths:
+    /members:
+        get:
+            tags:
+                - members
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: string
+                            examples:
+                                List of members:
+                                    value:
+                                        - John Doe
+                                        - Jane Smith
+                                        - Peter Jones
+                    description: Return a list of members
+            summary: get list of games from api
+            description: Returns a list of all members in the API to the requesting user
+    '/members/{id}':
+        get:
+            tags:
+                - members
+            parameters:
+                -
+                    name: id
+                    description: Id for Member the user has reported
+                    in: path
+                    required: true
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: string
+                            examples:
+                                EXAMPLE OF MEMBER:
+                                    value:
+                                        MemberID: 1
+                                        FirstName: John2
+                                        LastName: Doe
+                                        Adress: Kuusk 1 Oks 2
+                                        Phonenumber: '5556661111'
+                                        Email: john.doe@example.com
+                                        RegistrationDate: 01.11.2000
+                                        Active: true
+                                        Level: 6
+                    description: Returns details of Member to the user
+                '404':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/error'
+                            examples:
+                                Member /w+ was not found:
+                                    value:
+                                        -
+                                            error: Member\w+ was not found in game array.
+                    description: Return error 404 to the user if member with this ID is not found.
+            operationId: id
+            summary: Get full details for a member
+            description: |
+                Returns full details of a given id member
+        parameters:
+            -
+                examples:
+                    Example if ID:
+                        value: '1 '
+                name: id
+                description: This is id of member the user has requested.
+                schema:
+                    type: integer
+                in: path
+                required: true
+components:
+    schemas:
+        error:
+            title: Root Type for error
+            description: ''
+            type: object
+            properties:
+                error:
+                    type: string
+            example:
+                error: Error message.

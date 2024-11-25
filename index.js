@@ -1,7 +1,8 @@
 const app = require('express')();
 const port = 8080
 const swaggerUI = require('swagger-ui-express');
-const swaggerDoc = require("./docs/swagger.json");
+const yamljs = require('yamljs');
+const swaggerDoc = yamljs.load('./docs/swagger.yaml');
 
 app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
