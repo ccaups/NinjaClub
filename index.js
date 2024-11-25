@@ -9,8 +9,14 @@ app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 app.get("/members", (req, res) => { res.send(members)})
 
 app.get("/members/:id", (req,res) => {
-    res.send(members[req.params.id])
-})
+    if (typeof members[req.params.id-1]
+    === "undefined") {
+        return res.status(404).send({error:"Member not found"})
+    }
+    if (req.params.id == null) {
+        return res.status(400).send({error:"Invalid member ID"})
+    }
+    res.send(members[req.params.id-1])})
 
 const members = [
     {

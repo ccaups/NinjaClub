@@ -23,7 +23,7 @@ paths:
                                         - Jane Smith
                                         - Peter Jones
                     description: Return a list of members
-            summary: get list of games from api
+            summary: Get list of members from api
             description: Returns a list of all members in the API to the requesting user
     '/members/{id}':
         get:
@@ -56,6 +56,17 @@ paths:
                                         Active: true
                                         Level: 6
                     description: Returns details of Member to the user
+                '400':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/error'
+                            examples:
+                                Invalid member ID:
+                                    value:
+                                        -
+                                            error: Invalid Id entered.
+                    description: Return status code 400 to the user if invalid ID was entered.
                 '404':
                     content:
                         application/json:
@@ -65,7 +76,7 @@ paths:
                                 Member /w+ was not found:
                                     value:
                                         -
-                                            error: Member\w+ was not found in game array.
+                                            error: Member\w+ was not found in member array.
                     description: Return error 404 to the user if member with this ID is not found.
             operationId: id
             summary: Get full details for a member
