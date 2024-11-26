@@ -9,11 +9,13 @@ How to run:
  - Open terminal in backend folder
  - use nodemon . to run backend
 ------------------------------------------------------
-team resources:
+Team resources:
 - https://studio.apicur.io/apis/112836
 - https://trello.com/b/aCpIO62f/ninja-klubi-api
+  
+------------------------------------------------------
 
-  ------------------------------------------------------
+ERD
   ![ERD diagramm](Ninja.drawio.png)
 
 
