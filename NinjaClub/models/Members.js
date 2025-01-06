@@ -1,50 +1,60 @@
 module.exports = (sequelize, DataTypes) => {
     const Members = sequelize.define(
-        'Members',
-        {
-            MemberID: {
-                type: DataTypes.INTEGER,
-                primaryKey: true,
-                autoIncrement: true,
-            },
-            FirstName: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            LastName: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            Address: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            PhoneNumber: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            Email: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            RegistrationDate: {
-                type: DataTypes.DATE,
-                allowNull: false,
-            },
-            Active: {
-                type: DataTypes.BOOLEAN, 
-                allowNull: false,
-            },
-            Level: {
-                type: DataTypes.INTEGER, 
-                allowNull: false,
-            },
+      'Members',
+      {
+        MemberID: {
+          type: DataTypes.INTEGER,
+          primaryKey: true,
+          autoIncrement: true,
+          field: 'MemberID'
         },
-        {
-            timestamps: false,
-        }
+        FirstName: {
+          type: DataTypes.TEXT,
+          allowNull: false,
+          field: 'FirstName'
+        },
+        LastName: {
+          type: DataTypes.TEXT,
+          allowNull: false,
+          field: 'LastName'
+        },
+        Address: {
+          type: DataTypes.TEXT,
+          allowNull: false,
+          field: 'Address'
+        },
+        PhoneNumber: {
+          type: DataTypes.TEXT,
+          allowNull: false,
+          field: 'PhoneNumber'
+        },
+        Email: {
+          type: DataTypes.TEXT,
+          allowNull: false,
+          field: 'Email'
+        },
+        RegistrationDate: {
+          type: DataTypes.DATEONLY,
+          allowNull: false,
+          field: 'RegistrationDate'
+        },
+        Active: {
+          type: DataTypes.BOOLEAN,
+          allowNull: false,
+          field: 'Active'
+        },
+        Level: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          field: 'Level'
+        },
+      },
+      {
+        tableName: 'Members',
+        timestamps: false
+      }
     );
-
-    console.log(Members === sequelize.models.Members);
+  
     return Members;
-}
+  };
+  

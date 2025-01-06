@@ -31,3 +31,28 @@ const sync = (async () => {
 });
 
 module.exports = {db , sync};
+
+
+const Coach = require('./models/Coach')(sequelize, DataTypes);
+const GroupList = require('./models/GroupList')(sequelize, DataTypes);
+const Members = require('./models/Members')(sequelize, DataTypes);
+const Events = require('./models/Events')(sequelize, DataTypes);
+const EventAttendees = require('./models/eventAttendees')(sequelize, DataTypes);
+
+
+Coach.hasMany(GroupList, { foreignKey: 'CoachID' });
+GroupList.belongsTo(Coach, { foreignKey: 'CoachID' });
+
+Members.hasMany(GroupList, { foreignKey: 'MemberID' });
+GroupList.belongsTo(Members, { foreignKey: 'MemberID' });
+Coach.hasMany(Events, { foreignKey: 'CoachID' });
+Events.belongsTo(Coach, { foreignKey: 'CoachID' });
+
+module.exports = {
+  sequelize,
+  Coach,
+  GroupList,
+  Members,
+  Events,
+  EventAttendees
+};

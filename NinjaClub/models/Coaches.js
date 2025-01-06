@@ -1,37 +1,50 @@
 module.exports = (sequelize, DataTypes) => {
-    const Coaches = sequelize.define(
-        'Coaches',
-        {
-            CoachID: {
-                type: DataTypes.INTEGER,
-                primaryKey: true,
-                autoIncrement: true,
-            },
-            FirstName: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            LastName: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            Address: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            PhoneNumber: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            Email: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
+    const Coach = sequelize.define(
+      'Coach',
+      {
+        CoachID: {
+          type: DataTypes.INTEGER,
+          primaryKey: true,
+          autoIncrement: true,
+          field: 'CoachID'
         },
-        {
-            timestamps: false,
-        }
+        GroupID: {
+          type: DataTypes.INTEGER,
+          allowNull: true,
+          field: 'GroupID'
+        },
+        FirstName: {
+          type: DataTypes.TEXT,
+          allowNull: false,
+          field: 'FirstName'
+        },
+        LastName: {
+          type: DataTypes.TEXT,
+          allowNull: false,
+          field: 'LastName'
+        },
+        Aadress: {
+          type: DataTypes.TEXT,
+          allowNull: false,
+          field: 'Aadress'
+        },
+        PhoneNumber: {
+          type: DataTypes.TEXT,
+          allowNull: false,
+          field: 'PhoneNumber'
+        },
+        Email: {
+          type: DataTypes.TEXT,
+          allowNull: false,
+          field: 'Email'
+        },
+      },
+      {
+        tableName: 'Coach',
+        timestamps: false 
+      }
     );
-    console.log(Coaches === sequelize.models.Coaches);
-    return Coaches;
-}
+  
+    return Coach;
+  };
+  
