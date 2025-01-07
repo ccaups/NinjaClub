@@ -40,7 +40,7 @@ exports.create = async (req, res) => {
       !req.body.FirstName ||
       !req.body.LastName ||
       !req.body.Address ||
-      !req.body.Phonenumber ||
+      !req.body.PhoneNumber ||
       !req.body.Email ||
       !req.body.RegistrationDate ||
       typeof req.body.Active === "undefined" ||
@@ -54,7 +54,7 @@ exports.create = async (req, res) => {
       FirstName: req.body.FirstName,
       LastName: req.body.LastName,
       Address: req.body.Address,
-      Phonenumber: req.body.Phonenumber,
+      PhoneNumber: req.body.PhoneNumber,
       Email: req.body.Email,
       RegistrationDate: req.body.RegistrationDate,
       Active: req.body.Active,
@@ -84,7 +84,7 @@ exports.editById = async (req, res) => {
       !req.body.FirstName ||
       !req.body.LastName ||
       !req.body.Address ||
-      !req.body.Phonenumber ||
+      !req.body.PhoneNumber ||
       !req.body.Email ||
       !req.body.RegistrationDate ||
       typeof req.body.Active === "undefined" ||
@@ -97,7 +97,7 @@ exports.editById = async (req, res) => {
     member.FirstName = req.body.FirstName;
     member.LastName = req.body.LastName;
     member.Address = req.body.Address;
-    member.Phonenumber = req.body.Phonenumber;
+    member.PhoneNumber = req.body.PhoneNumber;
     member.Email = req.body.Email;
     member.RegistrationDate = req.body.RegistrationDate;
     member.Active = req.body.Active;

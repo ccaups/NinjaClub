@@ -9,7 +9,7 @@
         "/members": {
             "get": {
                 "tags": [
-                    "members"
+                    "Members"
                 ],
                 "responses": {
                     "200": {
@@ -35,8 +35,754 @@
                         "description": "Return a list of members"
                     }
                 },
-                "summary": "get list of games from api",
+                "summary": "Get list of members from api",
                 "description": "Returns a list of all members in the API to the requesting user"
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/member"
+                            },
+                            "examples": {
+                                "Create of a member": {
+                                    "value": {
+                                        "FirstName": "Kaupo",
+                                        "LastName": "Doe",
+                                        "Address": "Kuusk 1 Oks 2",
+                                        "PhoneNumber": "5556661111",
+                                        "Email": "john.doe@example.com",
+                                        "RegistrationDate": "01.11.2000",
+                                        "Active": true,
+                                        "Level": 5
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "Members"
+                ],
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "member that is added": {
+                                        "value": [
+                                            {
+                                                "MemberID": 2,
+                                                "FirstName": "Jane",
+                                                "LastName": "Smith",
+                                                "Adress": "Paju 5 Leht 3",
+                                                "Phonenumber": "5557772222",
+                                                "Email": "jane.smith@example.com",
+                                                "RegistrationDate": "12.06.2005",
+                                                "Active": false,
+                                                "Level": 4
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return code 201 to user if creation of new member was successful."
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "error": {
+                                        "value": [
+                                            {
+                                                "error": "One or more parameters missing."
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return status 400 to the user, if one or multiple parameters are missing."
+                    }
+                },
+                "summary": "Add new member",
+                "description": "Add new member into the array."
+            }
+        },
+        "/members/{id}": {
+            "get": {
+                "tags": [
+                    "MemberID"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "examples": {
+                                    "Get for a full details member": {
+                                        "value": {
+                                            "MemberID": 1,
+                                            "FirstName": "John2",
+                                            "LastName": "Doe",
+                                            "Adress": "Kuusk 1 Oks 2",
+                                            "Phonenumber": "5556661111",
+                                            "Email": "john.doe@example.com",
+                                            "RegistrationDate": "01.11.2000",
+                                            "Active": true,
+                                            "Level": 6
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Returns details of Member to the user"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "Invalid member ID": {
+                                        "value": {
+                                            "error": "Invalid Id entered."
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return status code 400 to the user if invalid ID was entered."
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "No found member": {
+                                        "value": {
+                                            "error": "Member was not found in database."
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return error 404 to the user if member with this ID is not found."
+                    }
+                },
+                "summary": "Get full details for a member",
+                "description": "Returns full details of a given id member"
+            },
+            "put": {
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/member"
+                            },
+                            "examples": {
+                                "Example": {
+                                    "value": {
+                                        "MemberID": 1,
+                                        "FirstName": "Kaupo",
+                                        "LastName": "Doe",
+                                        "Adress": "Kuusk 1 Oks 2",
+                                        "Phonenumber": "5556661111",
+                                        "Email": "john.doe@example.com",
+                                        "RegistrationDate": "01.11.2000",
+                                        "Active": true,
+                                        "Level": 5
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "MemberID"
+                ],
+                "responses": {
+                    "201": {
+                        "content": {
+                            "Example": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "Member was created": {
+                                        "value": {
+                                            "error": "Created successfully."
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "The member to be updated is not found in the array"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "Member ID was invalid": {
+                                        "value": {
+                                            "error": "Invalid Id entered."
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return status code 400 to the user if invalid ID was entered."
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "Member ID not found": {
+                                        "value": {
+                                            "error": "Id was not found in member array."
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return error 404 to the user if member with this ID is not found."
+                    }
+                },
+                "summary": "Update full details for a member"
+            },
+            "delete": {
+                "tags": [
+                    "MemberID"
+                ],
+                "responses": {
+                    "204": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "Successfully deleted": {
+                                        "value": {
+                                            "error": "no content"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Returned error, in case deletion was successful."
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "Bad request": {
+                                        "value": "\n[\n  {\n    \"error\": \"Member ID was bad request.\"\n  }\n]"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Returned error, in case deletion was bad request."
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "Member ID was not found.": {
+                                        "value": [
+                                            {
+                                                "error": "Member\\w+ was not found in member array."
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Returned error, in case deletion was not found."
+                    }
+                },
+                "summary": "Delete full details for a member"
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "Member ID": {
+                            "value": "1"
+                        }
+                    },
+                    "name": "id",
+                    "description": "This is id of member the user has requested.",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/groups": {
+            "get": {
+                "tags": [
+                    "Group"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "List of groups": {
+                                        "value": [
+                                            "Starter",
+                                            "Pro"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return a list of groups"
+                    }
+                },
+                "summary": "Get list of group from api",
+                "description": "Returns a list of all group in the API to the requesting user"
+            },
+            "post": {
+                "tags": [
+                    "Group"
+                ],
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "group that is added": {
+                                        "value": [
+                                            {
+                                                "GroupID": 1,
+                                                "GroupName": "Starter",
+                                                "Schedule": "12.12.2024",
+                                                "MemberID": "1",
+                                                "CoachID": "1"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return code 201 to user if creation of new group was successful."
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "error": {
+                                        "value": [
+                                            {
+                                                "error": "One or more parameters missing."
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return status 400 to the user, if one or multiple parameters are missing."
+                    }
+                },
+                "summary": "Add new group",
+                "description": "Add new group into the array."
+            }
+        },
+        "/groups/{id}": {
+            "get": {
+                "tags": [
+                    "GroupID"
+                ],
+                "operationId": "id"
+            },
+            "put": {
+                "tags": [
+                    "GroupID"
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "GroupID"
+                ]
+            }
+        },
+        "/coaches": {
+            "get": {
+                "tags": [
+                    "Coaches"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "List of coaches": {
+                                        "value": [
+                                            "Paul Walker",
+                                            "V-Verten",
+                                            "Toomas Ilves"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return a list of members"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "Coach list not found": {
+                                        "value": {
+                                            "error": "Check Database"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "No return a list of coaches"
+                    }
+                },
+                "summary": "Get list of coaches from api",
+                "description": "Returns a list of all coaches in the API to the requesting user"
+            },
+            "post": {
+                "tags": [
+                    "Coaches"
+                ],
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/coach"
+                                },
+                                "examples": {
+                                    "Create of a coach": {
+                                        "value": [
+                                            {
+                                                "CoachID": 1,
+                                                "GroupID": 1,
+                                                "FirstName": "Ott",
+                                                "LastName": "Tänak",
+                                                "Adress": "Kuusk 1 Oks 2",
+                                                "Phonenumber": "5556661111",
+                                                "Email": "john.doe@example.com"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return code 201 to user if creation of new coach was successful."
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "error": {
+                                        "value": [
+                                            {
+                                                "error": "One or more parameters missing."
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return status 400 to the user, if one or multiple parameters are missing."
+                    }
+                },
+                "summary": "Add new coach",
+                "description": "Add new coach into the array."
+            }
+        },
+        "/coaches/{id}/": {
+            "get": {
+                "tags": [
+                    "CoachID"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "examples": {
+                                    "Get a details a coach": {
+                                        "value": {
+                                            "CoachID": 97,
+                                            "GroupID": 82,
+                                            "FirstName": "jl6",
+                                            "LastName": "ef0nlq1",
+                                            "Address": "ju",
+                                            "Phonenumber": "mo",
+                                            "Email": ""
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Returns details of Member to the user"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "Invalid coach ID": {
+                                        "value": {
+                                            "error": "Invalid Id entered."
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return status code 400 to the user if invalid ID was entered."
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "No found coach": {
+                                        "value": {
+                                            "error": "Coach was not found in database."
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return error 404 to the user if Coach with this ID is not found."
+                    }
+                },
+                "summary": "Get full details for a coach",
+                "description": "Returns full details of a given id coach"
+            },
+            "put": {
+                "tags": [
+                    "CoachID"
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "CoachID"
+                ]
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "Coach ID": {
+                            "value": "/coaches/{1}/"
+                        }
+                    },
+                    "name": "id",
+                    "description": "This is id of coach the user has requested.",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "member": {
+                "title": "Root Type for member",
+                "description": "example of submittable member",
+                "required": [],
+                "type": "object",
+                "properties": {
+                    "FirstName": {
+                        "type": "string"
+                    },
+                    "LastName": {
+                        "type": "string"
+                    },
+                    "Adress": {
+                        "type": "string"
+                    },
+                    "Phonenumber": {
+                        "type": "string"
+                    },
+                    "Email": {
+                        "type": "string"
+                    },
+                    "RegistrationDate": {
+                        "type": "string"
+                    },
+                    "Active": {
+                        "type": "boolean"
+                    },
+                    "Level": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "MemberID": {
+                        "description": "",
+                        "type": "integer"
+                    }
+                },
+                "example": {
+                    "MemberID": 1,
+                    "FirstName": "Jane",
+                    "LastName": "Smith",
+                    "Adress": "Paju 5 Leht 3",
+                    "Phonenumber": "5557772222",
+                    "Email": "jane.smith@example.com",
+                    "RegistrationDate": "12.06.2005",
+                    "Active": false,
+                    "Level": 4
+                }
+            },
+            "group": {
+                "title": "Root Type for GroupTraining",
+                "description": "example of group",
+                "type": "object",
+                "properties": {
+                    "GroupID": {
+                        "type": "integer"
+                    },
+                    "GroupName": {
+                        "type": "string"
+                    },
+                    "Schedule": {
+                        "type": "string"
+                    },
+                    "MemberID": {
+                        "type": "integer"
+                    },
+                    "CoachID": {
+                        "type": "integer"
+                    }
+                },
+                "example": {
+                    "GroupID": 1,
+                    "GroupName": "Starter",
+                    "Schedule": "12.12.2024",
+                    "MemberID": "1",
+                    "CoachID": "1"
+                }
+            },
+            "error": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "error": {
+                        "description": "",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "error": "test"
+                }
+            },
+            "coach": {
+                "title": "Root Type for coach",
+                "description": "exmaple of coach",
+                "type": "object",
+                "properties": {
+                    "CoachID": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "GroupID": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "FirstName": {
+                        "type": "string"
+                    },
+                    "LastName": {
+                        "type": "string"
+                    },
+                    "Address": {
+                        "type": "string"
+                    },
+                    "Phonenumber": {
+                        "type": "string"
+                    },
+                    "Email": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "CoachID": 1,
+                    "GroupID": 1,
+                    "FirstName": "Ott",
+                    "LastName": "Tänak",
+                    "Address": "Kuusk 1 Oks 2",
+                    "Phonenumber": "5556661111",
+                    "Email": "john.doe@example.com"
+                }
             }
         }
     }
