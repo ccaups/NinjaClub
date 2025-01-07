@@ -1,11 +1,23 @@
 const { db } = require("../db");
 const Utils = require("./utlis");
 
+// exports.getAll = async (req, res) => {
+//   try {
+//     const allMembers = await db.members.findAll();
+
+//     res.send(allMembers);
+//   } catch (error) {
+//     res.status(500).send({ error: error.message });
+//   }
+// };
+
 exports.getAll = async (req, res) => {
   try {
-    const allMembers = await db.members.findAll();
+    const allMemberNames = await db.members.findAll({
+      attributes: ['FirstName','LastName'] // Valib ainult 'name' veeru
+    });
 
-    res.send(allMembers);
+    res.send(allMemberNames);
   } catch (error) {
     res.status(500).send({ error: error.message });
   }

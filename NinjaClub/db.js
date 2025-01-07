@@ -24,6 +24,10 @@ const db = {}
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 db.members = require("./models/members")(sequelize, DataTypes);
+db.coaches = require("./models/coaches")(sequelize, DataTypes);
+db.groupList = require('./models/GroupList')(sequelize, DataTypes);
+db.events = require('./models/Events')(sequelize, DataTypes);
+db.eventattendees = require('./models/EventAttendees')(sequelize, DataTypes);
 
 const sync = (async () => {
     await sequelize.sync({alter: true});
@@ -33,26 +37,19 @@ const sync = (async () => {
 module.exports = {db , sync};
 
 
-const Coach = require('./models/coaches')(sequelize, DataTypes);
-const GroupList = require('./models/grouplist')(sequelize, DataTypes);
-const Members = require('./models/members')(sequelize, DataTypes);
-const Events = require('./models/events')(sequelize, DataTypes);
-const EventAttendees = require('./models/eventattendees')(sequelize, DataTypes);
+// db.Coach = require('./models/Coaches')(sequelize, DataTypes);
+// db.GroupList = require('./models/GroupList')(sequelize, DataTypes);
+// db.Members = require('./models/Members')(sequelize, DataTypes);
+// db.Events = require('./models/Events')(sequelize, DataTypes);
+// db.EventAttendees = require('./models/EventAttendees')(sequelize, DataTypes);
 
 
-Coach.hasMany(GroupList, { foreignKey: 'CoachID' });
-GroupList.belongsTo(Coach, { foreignKey: 'CoachID' });
+// Coach.hasMany(GroupList, { foreignKey: 'CoachID' });
+// GroupList.belongsTo(Coach, { foreignKey: 'CoachID' });
 
-Members.hasMany(GroupList, { foreignKey: 'MemberID' });
-GroupList.belongsTo(Members, { foreignKey: 'MemberID' });
-Coach.hasMany(Events, { foreignKey: 'CoachID' });
-Events.belongsTo(Coach, { foreignKey: 'CoachID' });
+// Members.hasMany(GroupList, { foreignKey: 'MemberID' });
+// GroupList.belongsTo(Members, { foreignKey: 'MemberID' });
+// Coach.hasMany(Events, { foreignKey: 'CoachID' });
+// Events.belongsTo(Coach, { foreignKey: 'CoachID' });
 
-module.exports = {
-  sequelize,
-  Coach,
-  GroupList,
-  Members,
-  Events,
-  EventAttendees
-};
+module.exports = {db, sync};
