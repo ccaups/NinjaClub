@@ -1,5 +1,5 @@
 const { db } = require("../db");
-const Utils = require("./utils");
+const Utils = require("./utlis");
 
 exports.getAll = async (req, res) => {
   try {

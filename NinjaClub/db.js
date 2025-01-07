@@ -23,7 +23,7 @@ const sequelize = new Sequelize (
 const db = {}
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
-db.members = require("./modeles/member")(sequelize, DataTypes);
+db.members = require("./models/members")(sequelize, DataTypes);
 
 const sync = (async () => {
     await sequelize.sync({alter: true});
@@ -33,11 +33,11 @@ const sync = (async () => {
 module.exports = {db , sync};
 
 
-const Coach = require('./models/Coach')(sequelize, DataTypes);
-const GroupList = require('./models/GroupList')(sequelize, DataTypes);
-const Members = require('./models/Members')(sequelize, DataTypes);
-const Events = require('./models/Events')(sequelize, DataTypes);
-const EventAttendees = require('./models/eventAttendees')(sequelize, DataTypes);
+const Coach = require('./models/coaches')(sequelize, DataTypes);
+const GroupList = require('./models/grouplist')(sequelize, DataTypes);
+const Members = require('./models/members')(sequelize, DataTypes);
+const Events = require('./models/events')(sequelize, DataTypes);
+const EventAttendees = require('./models/eventattendees')(sequelize, DataTypes);
 
 
 Coach.hasMany(GroupList, { foreignKey: 'CoachID' });

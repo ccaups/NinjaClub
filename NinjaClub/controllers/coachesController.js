@@ -1,5 +1,5 @@
 const { db } = require("../db");
-const Utils = require("./utils"); // If you have a getBaseURL helper, otherwise remove
+const Utils = require("./utlis"); // If you have a getBaseURL helper, otherwise remove
 
 
 exports.getAll = async (req, res) => {

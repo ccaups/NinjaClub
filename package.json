@@ -1,12 +1,14 @@
 {
   "name": "ninjaclub",
   "version": "1.0.0",
-  "description": "Ninja api for registering members, which users may own. \r ------------------------------------------------------\r ------------------------------------------------------\r Please see below for instructions on how to run, and where its api and trello team resources are\r ------------------------------------------------------\r How to run:\r  - Open terminal in backend folder\r  - use nodemon . to run backend\r ------------------------------------------------------\r Team resources:\r - https://studio.apicur.io/apis/112836\r - https://trello.com/b/aCpIO62f/ninja-klubi-api\r ------------------------------------------------------\r ERD\r ------------------------------------------------------\r   ![ERD diagramm](Ninja.drawio.png)",
+  "description": "Ninja API for registering members, with resources and instructions.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "",
-    "start": "concurrently \"cd NinjaClub && nodemon .\" \"cd FrontEnd\\frontend && npm run dev\""
+    "start": "concurrently \"cd NinjaClub && nodemon .\" \"cd FrontEnd/frontend && npm run dev\"",
+    "install-all": "npm install && cd FrontEnd/frontend && npm install && cd ../../NinjaClub && npm install",
+    "backend": "cd NinjaClub && nodemon .",
+    "frontend": "cd FrontEnd/frontend && npm run dev"
   },
   "author": "",
   "license": "ISC",
