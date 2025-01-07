@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
           field: 'RegistrationDate'
         },
         Active: {
-          type: DataTypes.BOOLEAN,
+          type: DataTypes.INTEGER,
           allowNull: true,
           field: 'Active'
         },

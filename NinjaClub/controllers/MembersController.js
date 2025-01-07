@@ -14,7 +14,7 @@ const Utils = require("./utlis");
 exports.getAll = async (req, res) => {
   try {
     const allMemberNames = await db.members.findAll({
-      attributes: ['FirstName','LastName'] // Valib ainult 'name' veeru
+      attributes: ['FirstName','LastName','MemberID'] // Valib ainult 'name' veeru
     });
 
     res.send(allMemberNames);
