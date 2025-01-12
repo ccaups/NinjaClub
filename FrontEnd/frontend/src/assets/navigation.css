@@ -1,0 +1,33 @@
+/* navigation.css */
+#headertop {
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    padding: 5px 10px;
+    margin: 0 5px;
+    color: #cff8fd; /* Set a default text color */
+}
+
+a:hover {
+    color: #cff8fd; /* Change hover color */
+    background-color:rgb(77, 76, 76); /* Add a light background color */
+    border-radius: 30px; /* Add rounded corners */
+}
+
+/* @media screen and (max-width: 768px) {
+    #headertop {
+        flex-direction: column;
+    }
+
+    a {
+        margin-bottom: 10px;
+    }
+} */
