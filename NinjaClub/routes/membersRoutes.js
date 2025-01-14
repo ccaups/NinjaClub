@@ -1,4 +1,4 @@
-const membersController = require('../controllers/membersController');
+const membersController = require('../controllers/MembersController');
 
 
 module.exports = (app) => {

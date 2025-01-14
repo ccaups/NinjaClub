@@ -1,7 +1,5 @@
 <template>
     <div>
-  
-  
       <table class="table">
         <thead>
           <tr>
@@ -14,7 +12,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="group in groups" :key="group.MemberID">
+          <tr v-for="group in groups" :key="groups.GroupID">
             <td>{{ group.GroupID }}</td>
             <td>{{ group.CoachID }}</td>
             <td>{{ group.MemberID }}</td>
@@ -38,12 +36,12 @@
   <script>
   export default {
     props: {
-      members: Array, // Expects an array of member objects
+      groups: Array, // Expects an array of member objects
     },
     methods: {
-        viewGroupByID(id) {
+      viewGroupByID(id) {
         console.log('Viewing details for GroupID:', id);
-        this.$emit('detailGroup', id);
+        this.$emit('viewGroup', id);
       },
       editGroupByID(id) {
         console.log('Viewing edit for GroupID:', id);

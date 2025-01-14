@@ -13,25 +13,21 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
     },
-    {
-      path: '/members',
-      name: 'members',
-      component: MembersView,
-    },
+
     {
       path: '/coaches',
       name: 'coaches',
       component: CoachesView,
     },
     {
-      path: '/groups',
-      name: 'groups',
-      component: GroupsView,
-    },
-    {
       path: '/about',
       name: 'about',
       component: AboutView,
+    },
+    {
+      path: '/members',
+      name: 'members',
+      component: MembersView,
     },
     {
       path: '/members/:id',  // Path for member details
@@ -40,7 +36,7 @@ const router = createRouter({
       props: true,
     },
     {
-      path: '/members/create',
+      path: '/members/create', // Path for create member
       name: 'MemberCreate',
       component: () => import('@/Members/MemberCreate.vue'),
     },
@@ -54,6 +50,34 @@ const router = createRouter({
       path: '/members/delete/:id',  // Path for deleting member
       name: 'MemberDelete',
       component: () => import('@/Members/MemberDelete.vue'),
+      props: true,
+    },
+    {
+      path: '/groups',
+      name: 'groups',
+      component: GroupsView,
+    },
+    {
+      path: '/groups/create', // Path for updating group
+      name: 'GroupCreate',
+      component: () => import('@/Groups/GroupCreate.vue'),
+    },
+    {
+      path: '/groups/view/:id',  // Path for member details
+      name: 'GroupDetail',
+      component: () => import('@/Groups/GroupDetail.vue'),
+      props: true,
+    },
+    {
+      path: '/groups/edit/:id',  // Path for updating member
+      name: 'GroupEdit',
+      component: () => import('@/Groups/GroupEdit.vue'),
+      props: true,
+    },
+    {
+      path: '/groups/delete/:id',  // Path for deleting member
+      name: 'GroupDelete',
+      component: () => import('@/Groups/GroupDelete.vue'),
       props: true,
     },
     {

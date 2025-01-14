@@ -1,11 +1,11 @@
-const GroupListController = require("../controllers/groupListController");
+const groupListController = require('../controllers/GroupListController');
 
 module.exports = (app) => {
-  app.route("/GroupList")
-      .get(GroupListController.getAll)
-      .post(GroupListController.create)
-  app.route("/GroupList/:id")
-      .get(GroupListController.getById)
-      .put(GroupListController.editById)
-      .delete(GroupListController.deleteById)
+  app.route("/groups")
+      .get(groupListController.getAll)
+      .post(groupListController.create)
+  app.route("/groups/:id")
+      .get(groupListController.getById)
+      .put(groupListController.editById)
+      .delete(groupListController.deleteById)
 }
