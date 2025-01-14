@@ -12,7 +12,7 @@
       </div>
       <div>
         <label for="address">Address:</label>
-        <input type="text" v-model="newCoach.Aadress" required />
+        <input type="text" v-model="newCoach.Address" required />
       </div>
       <div>
         <label for="phoneNumber">Phone Number:</label>
