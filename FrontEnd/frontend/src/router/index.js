@@ -36,24 +36,24 @@ const router = createRouter({
     {
       path: '/members/:id',  // Path for member details
       name: 'MemberDetail',
-      component: () => import('@/views/MemberDetail.vue'),
+      component: () => import('@/Members/MemberDetail.vue'),
       props: true,
     },
     {
       path: '/members/create',
       name: 'MemberCreate',
-      component: () => import('@/views/MemberCreate.vue'),
+      component: () => import('@/Members/MemberCreate.vue'),
     },
     {
-      path: '/members/update/:id',  // Path for updating member
-      name: 'MemberUpdate',
-      component: () => import('@/views/MemberUpdate.vue'),
+      path: '/members/edit/:id',  // Path for updating member
+      name: 'MemberEdit',
+      component: () => import('@/Members/MemberEdit.vue'),
       props: true,
     },
     {
       path: '/members/delete/:id',  // Path for deleting member
       name: 'MemberDelete',
-      component: () => import('@/views/MemberDelete.vue'),
+      component: () => import('@/Members/MemberDelete.vue'),
       props: true,
     },
     {

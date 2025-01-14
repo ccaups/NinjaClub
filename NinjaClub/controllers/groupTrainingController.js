@@ -1,4 +1,4 @@
-const { db } = require("../db");
+const {db} = require("../db");
 const Utils = require("./utlis");
 
 exports.getAll = async (req, res) => {

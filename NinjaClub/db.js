@@ -23,9 +23,9 @@ const sequelize = new Sequelize (
 const db = {}
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
-db.members = require("./models/members")(sequelize, DataTypes);
-db.coaches = require("./models/coaches")(sequelize, DataTypes);
-db.groupList = require('./models/GroupList')(sequelize, DataTypes);
+db.members = require("./models/Members")(sequelize, DataTypes);
+db.coaches = require("./models/Coaches")(sequelize, DataTypes);
+db.GroupTraining = require('./models/GroupTraining')(sequelize, DataTypes);
 db.events = require('./models/Events')(sequelize, DataTypes);
 db.eventattendees = require('./models/EventAttendees')(sequelize, DataTypes);
 
@@ -36,10 +36,9 @@ const sync = (async () => {
 
 module.exports = {db , sync};
 
-
+db.Members = require('./models/Members')(sequelize, DataTypes);
 // db.Coach = require('./models/Coaches')(sequelize, DataTypes);
 // db.GroupList = require('./models/GroupList')(sequelize, DataTypes);
-// db.Members = require('./models/Members')(sequelize, DataTypes);
 // db.Events = require('./models/Events')(sequelize, DataTypes);
 // db.EventAttendees = require('./models/EventAttendees')(sequelize, DataTypes);
 

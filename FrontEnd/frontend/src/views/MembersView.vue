@@ -1,6 +1,6 @@
 <template>
   <h1>Members</h1>
-  <MemberTable :members="members" @detailMember="detailMember" @updateMember="updateMember" @deleteMember="deleteMember" />
+  <MemberTable :members="members" @detailMember="detailMember" @editMember="editMember" @deleteMember="deleteMember" />
 </template>
 
 <script>
@@ -35,10 +35,10 @@ export default {
     this.$router.push({ name: 'MemberDetail', params: { id } });
     console.log('Redirecting to details for MemberID:', id);
     },
-    updateMember(id) {
+    editMember(id) {
       // Ensure that the route name is correctly defined in your router configuration
-      this.$router.push({ name: 'MemberUpdate', params: { id } });
-      console.log('Redirecting to update for MemberID:', id);
+      this.$router.push({ name: 'MemberEdit', params: { id } });
+      console.log('Redirecting to edit for MemberID:', id);
     },
     deleteMember(id) {
       // Ensure that the route name is correctly defined in your router configuration

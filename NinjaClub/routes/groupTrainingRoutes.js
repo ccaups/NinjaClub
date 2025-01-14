@@ -1,20 +1,11 @@
-const express = require("express");
-const router = express.Router();
 const groupTrainingController = require("../controllers/GroupTrainingController");
 
-
-router.get("/", groupTrainingController.getAll);
-
-
-router.get("/:id", groupTrainingController.getById);
-
-
-router.post("/", groupTrainingController.create);
-
-
-router.put("/:id", groupTrainingController.editById);
-
-
-router.delete("/:id", groupTrainingController.deleteById);
-
-module.exports = router;
+module.exports = (app) => {
+  app.route("/groupTraining")
+      .get(groupTrainingController.getAll)
+      .post(groupTrainingController.create)
+  app.route("/groupTraining/:id")
+      .get(groupTrainingController.getById)
+      .put(groupTrainingController.editById)
+      .delete(groupTrainingController.deleteById)
+}

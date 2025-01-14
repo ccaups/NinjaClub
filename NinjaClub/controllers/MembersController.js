@@ -1,15 +1,18 @@
-const { db } = require("../db");
+// const {db} = require("../db");
+
+
+// exports.getAll = async (req, res) => { 
+//     const members = await db.members.findAll();
+//     console.log(members)
+//     res
+//     .send(members
+//         .map(({MemberID, FirstName}) => {return {MemberID, FirstName}}))
+// }
+
+
+const {db} = require("../db");
 const Utils = require("./utlis");
 
-// exports.getAll = async (req, res) => {
-//   try {
-//     const allMembers = await db.members.findAll();
-
-//     res.send(allMembers);
-//   } catch (error) {
-//     res.status(500).send({ error: error.message });
-//   }
-// };
 
 exports.getAll = async (req, res) => {
   try {

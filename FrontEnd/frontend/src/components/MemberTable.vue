@@ -1,9 +1,6 @@
 <template>
   <div>
-    <!-- Create Member Button -->
-    <button @click="createMember" style="margin-bottom: 20px; background-color: green;">
-      Create Member
-    </button>
+
 
     <table class="table">
       <thead>
@@ -21,12 +18,16 @@
           <td>{{ member.LastName }}</td>
           <td>
             <button @click="viewMemberByID(member.MemberID)">View</button>
-            <button @click="updateMemberByID(member.MemberID)">Update</button>
+            <button @click="editMemberByID(member.MemberID)">Edit</button>
             <button @click="deleteMemberByID(member.MemberID)">Delete</button>
           </td>
         </tr>
       </tbody>
     </table>
+        <!-- Create Member Button -->
+        <button id="createMember" @click="createMember">
+      Create Member
+    </button>
   </div>
 </template>
 
@@ -40,9 +41,9 @@ export default {
       console.log('Viewing details for MemberID:', id);
       this.$emit('detailMember', id);
     },
-    updateMemberByID(id) {
-      console.log('Viewing update for MemberID:', id);
-      this.$emit('updateMember', id);
+    editMemberByID(id) {
+      console.log('Viewing edit for MemberID:', id);
+      this.$emit('editMember', id);
     },
     deleteMemberByID(id) {
       console.log('Viewing delete for MemberID:', id);
@@ -58,6 +59,13 @@ export default {
 </script>
 
 <style scoped>
+#createMember{
+  margin-left: 0px;
+  margin-top:0.7rem;
+  background-color: green;
+
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;

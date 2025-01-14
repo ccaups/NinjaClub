@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-    const GroupList = sequelize.define(
-      'GroupList',
+    const GroupTraining = sequelize.define(
+      'GroupTraining',
       {
         GroupID: {
           type: DataTypes.INTEGER,
@@ -30,11 +30,11 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       {
-        tableName: 'GroupList',
+        tableName: 'GroupTraining',
         timestamps: false
       }
     );
   
-    return GroupList;
+    return GroupTraining;
   };
   

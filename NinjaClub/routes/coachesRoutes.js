@@ -1,20 +1,12 @@
-const express = require("express");
-const router = express.Router();
-const coachesController = require("../controllers/coachesController");
+const coachesController = require('../controllers/coachesController');
 
 
-router.get("/", coachesController.getAll);
-
-
-router.get("/:id", coachesController.getById);
-
-
-router.post("/", coachesController.create);
-
-
-router.put("/:id", coachesController.editById);
-
-
-router.delete("/:id", coachesController.deleteById);
-
-module.exports = router;
+module.exports = (app) => {
+  app.route("/coaches")
+      .get(coachesController.getAll)
+      .post(coachesController.create)
+  app.route("/coaches/:id")
+      .get(coachesController.getById)
+      .put(coachesController.editById)
+      .delete(coachesController.deleteById)
+}

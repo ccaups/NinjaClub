@@ -361,337 +361,6 @@
                         }
                     },
                     "name": "id",
-                    "description": "This is id of member the user has requested.",
-                    "schema": {
-                        "type": "integer"
-                    },
-                    "in": "path",
-                    "required": true
-                }
-            ]
-        },
-        "/groups": {
-            "get": {
-                "tags": [
-                    "Group"
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
-                                    }
-                                },
-                                "examples": {
-                                    "List of groups": {
-                                        "value": [
-                                            "Starter",
-                                            "Pro"
-                                        ]
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Return a list of groups"
-                    }
-                },
-                "summary": "Get list of group from api",
-                "description": "Returns a list of all group in the API to the requesting user"
-            },
-            "post": {
-                "tags": [
-                    "Group"
-                ],
-                "responses": {
-                    "201": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
-                                    }
-                                },
-                                "examples": {
-                                    "group that is added": {
-                                        "value": {
-                                            "GroupID": 1,
-                                            "GroupName": "Starter",
-                                            "Schedule": "12.12.2024",
-                                            "MemberID": "1",
-                                            "CoachID": "1"
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Return code 201 to user if creation of new group was successful."
-                    },
-                    "400": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/error"
-                                },
-                                "examples": {
-                                    "error": {
-                                        "value": {
-                                            "error": "One or more parameters missing."
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Return status 400 to the user, if one or multiple parameters are missing."
-                    }
-                },
-                "summary": "Add new group",
-                "description": "Add new group into the array."
-            }
-        },
-        "/groups/{id}": {
-            "get": {
-                "tags": [
-                    "GroupID"
-                ],
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
-                                    }
-                                },
-                                "examples": {
-                                    "Get full details of group": {
-                                        "value": {
-                                            "GroupID": 1,
-                                            "CoachID": "John",
-                                            "MemberID": "Doe",
-                                            "GroupName": "Black belt",
-                                            "Schedule": "Monday Thursday Wednesday"
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Returns full details of group to user."
-                    },
-                    "400": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/error"
-                                },
-                                "examples": {
-                                    "Group not found": {
-                                        "value": {
-                                            "error": "Bad Request."
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Return status code 400 to the user if invalid ID was entered."
-                    },
-                    "404": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/error"
-                                },
-                                "examples": {
-                                    "Group no found": {
-                                        "value": {
-                                            "error": "Group was not found in database."
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Return error 404 to the user if member with this ID is not found."
-                    }
-                },
-                "operationId": "id",
-                "summary": "Get full details for training group.",
-                "description": "Returns full details of given ID group."
-            },
-            "put": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
-                            },
-                            "examples": {
-                                "Example": {
-                                    "value": {
-                                        "GroupID": 1,
-                                        "CoachID": "John",
-                                        "MemberID": "Doe",
-                                        "GroupName": "Black belt",
-                                        "Schedule": "Monday Thursday Wednesday"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "tags": [
-                    "GroupID"
-                ],
-                "parameters": [
-                    {
-                        "examples": {
-                            "Group ID": {
-                                "value": "1"
-                            }
-                        },
-                        "name": "id",
-                        "description": "This is id of the group the user has requested.",
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
-                                    }
-                                },
-                                "examples": {
-                                    "Group was created": {
-                                        "value": {
-                                            "error": "Created successfully."
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "description": "The group to be updated is not found in the array"
-                    },
-                    "400": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/error"
-                                },
-                                "examples": {
-                                    "Invalid group ID": {
-                                        "value": {
-                                            "error": "Invalid Id entered."
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Return status code 400 to the user if invalid ID was entered."
-                    },
-                    "404": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/error"
-                                },
-                                "examples": {
-                                    "Group ID not found": {
-                                        "value": {
-                                            "error": "Id was not found in group array."
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Return error 404 to the user if group with this ID is not found."
-                    }
-                },
-                "summary": "Update details of a group."
-            },
-            "delete": {
-                "tags": [
-                    "GroupID"
-                ],
-                "responses": {
-                    "204": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {}
-                                },
-                                "examples": {
-                                    "Deleted successfully.": {
-                                        "value": {
-                                            "error": "Deleted successfully."
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Returned error, in case deletion was successful."
-                    },
-                    "400": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/error"
-                                },
-                                "examples": {
-                                    "Bad request": {
-                                        "value": {
-                                            "error": "Member ID was bad request."
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Returned error, in case deletion was bad request."
-                    },
-                    "404": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/error"
-                                },
-                                "examples": {
-                                    "Succesfully deleted": {
-                                        "value": {
-                                            "error": "no content"
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Returned error, in case deletion was not found."
-                    }
-                },
-                "summary": "Delete group details."
-            },
-            "parameters": [
-                {
-                    "examples": {
-                        "Group ID": {
-                            "value": "1"
-                        }
-                    },
-                    "name": "id",
-                    "description": "This is id of the group the user has requested.",
                     "schema": {
                         "type": "integer"
                     },
@@ -952,7 +621,9 @@
                                 },
                                 "examples": {
                                     "Bad request": {
-                                        "value": "  {\n    \"error\": \"Coach ID was bad request.\"\n  }"
+                                        "value": {
+                                            "error": "Coach ID was bad request."
+                                        }
                                     }
                                 }
                             }
@@ -968,7 +639,7 @@
                                 "examples": {
                                     "Coach ID was not found.": {
                                         "value": {
-                                            "error": "Member\\w+ was not found in member array."
+                                            "error": "Member was not found in member array."
                                         }
                                     }
                                 }
@@ -988,6 +659,352 @@
                     },
                     "name": "id",
                     "description": "This is id of coach the user has requested.",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/grouptraining": {
+            "get": {
+                "tags": [
+                    "Group"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "List of groups": {
+                                        "value": [
+                                            "Starter",
+                                            "Pro"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return a list of groups"
+                    }
+                },
+                "summary": "Get list of group from api",
+                "description": "Returns a list of all group in the API to the requesting user"
+            },
+            "post": {
+                "tags": [
+                    "Group"
+                ],
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "group that is added": {
+                                        "value": {
+                                            "GroupID": 1,
+                                            "GroupName": "Starter",
+                                            "Schedule": "12.12.2024",
+                                            "MemberID": "1",
+                                            "CoachID": "1"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return code 201 to user if creation of new group was successful."
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "error": {
+                                        "value": {
+                                            "error": "One or more parameters missing."
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return status 400 to the user, if one or multiple parameters are missing."
+                    }
+                },
+                "summary": "Add new group",
+                "description": "Add new group into the array."
+            }
+        },
+        "/grouptraining/{id}": {
+            "get": {
+                "tags": [
+                    "GroupID"
+                ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "Group ID": {
+                                "value": "1"
+                            }
+                        },
+                        "name": "id",
+                        "description": "This is id of the group the user has requested.",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "Get full details of group": {
+                                        "value": {
+                                            "GroupID": 1,
+                                            "CoachID": "John",
+                                            "MemberID": "Doe",
+                                            "GroupName": "Black belt",
+                                            "Schedule": "Monday Thursday Wednesday"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Returns full details of group to user."
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "Group not found": {
+                                        "value": {
+                                            "error": "Bad Request."
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return status code 400 to the user if invalid ID was entered."
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "Group no found": {
+                                        "value": {
+                                            "error": "Group was not found in database."
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return error 404 to the user if member with this ID is not found."
+                    }
+                },
+                "operationId": "id",
+                "summary": "Get full details for training group.",
+                "description": "Returns full details of given ID group."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "examples": {
+                                "Example": {
+                                    "value": {
+                                        "GroupID": 1,
+                                        "CoachID": "John",
+                                        "MemberID": "Doe",
+                                        "GroupName": "Black belt",
+                                        "Schedule": "Monday Thursday Wednesday"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "GroupID"
+                ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "Group ID": {
+                                "value": "1"
+                            }
+                        },
+                        "name": "id",
+                        "description": "This is id of the group the user has requested.",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "Group was created": {
+                                        "value": {
+                                            "error": "Created successfully."
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "The group to be updated is not found in the array"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "Invalid group ID": {
+                                        "value": {
+                                            "error": "Invalid Id entered."
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return status code 400 to the user if invalid ID was entered."
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "Group ID not found": {
+                                        "value": {
+                                            "error": "Id was not found in group array."
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return error 404 to the user if group with this ID is not found."
+                    }
+                },
+                "summary": "Update details of a group."
+            },
+            "delete": {
+                "tags": [
+                    "GroupID"
+                ],
+                "responses": {
+                    "204": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "Deleted successfully.": {
+                                        "value": {
+                                            "error": "Deleted successfully."
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Returned error, in case deletion was successful."
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "Bad request": {
+                                        "value": {
+                                            "error": "Member ID was bad request."
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Returned error, in case deletion was bad request."
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                },
+                                "examples": {
+                                    "Succesfully deleted": {
+                                        "value": {
+                                            "error": "no content"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Returned error, in case deletion was not found."
+                    }
+                },
+                "summary": "Delete group details."
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "Group ID": {
+                            "value": "1"
+                        }
+                    },
+                    "name": "id",
+                    "description": "This is id of the group the user has requested.",
                     "schema": {
                         "type": "integer"
                     },

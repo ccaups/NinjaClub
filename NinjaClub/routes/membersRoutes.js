@@ -1,20 +1,12 @@
-const express = require("express");
-const router = express.Router();
-const membersController = require("../controllers/membersController");
+const membersController = require('../controllers/membersController');
 
 
-router.get("/", membersController.getAll);
-
-
-router.get("/:id", membersController.getById);
-
-
-router.post("/", membersController.create);
-
-
-router.put("/:id", membersController.editById);
-
-
-router.delete("/:id", membersController.deleteById);
-
-module.exports = router;
+module.exports = (app) => {
+  app.route("/members")
+      .get(membersController.getAll)
+      .post(membersController.create)
+  app.route("/members/:id")
+      .get(membersController.getById)
+      .put(membersController.editById)
+      .delete(membersController.deleteById)
+}
