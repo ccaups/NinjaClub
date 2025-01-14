@@ -61,6 +61,52 @@ const router = createRouter({
       name: 'not-found',
       component: () => import('@/views/NotFound.vue'),
     },
+    {
+      path: '/coaches/:id',  // Path for coach details
+      name: 'CoachDetail',
+      component: () => import('@/Coaches/CoachDetail.vue'),
+      props: true,
+    },
+    {
+      path: '/coaches/create',
+      name: 'CoachCreate',
+      component: () => import('@/Coaches/CoachCreate.vue'),
+    },
+    {
+      path: '/coaches/edit/:id',  // Path for updating coach
+      name: 'CoachEdit',
+      component: () => import('@/Coaches/CoachEdit.vue'),
+      props: true,
+    },
+    {
+      path: '/coaches/delete/:id',  // Path for deleting coach
+      name: 'CoachDelete',
+      component: () => import('@/Coaches/CoachDelete.vue'),
+      props: true,
+    },
+    {
+      path: '/grouptraining/:id',
+      name: 'GroupDetail',
+      component: () => import('@/Groups/GroupDetail.vue'),
+      props: true,
+    },
+    {
+      path: '/grouptraining/create',
+      name: 'GroupCreate',
+      component: () => import('@/Groups/GroupCreate.vue'),
+    },
+    {
+      path: '/grouptraining/edit/:id',
+      name: 'GroupEdit',
+      component: () => import('@/Groups/GroupEdit.vue'),
+      props: true,
+    },
+    {
+      path: '/grouptraining/delete/:id',
+      name: 'GroupDelete',
+      component: () => import('@/Groups/GroupDelete.vue'),
+      props: true,
+    },
   ],
 });
 
