@@ -20,7 +20,7 @@ app.use(express.json());
 
 require("./routes/membersRoutes")(app);
 require("./routes/coachesRoutes")(app);
-require("./routes/groupTrainingRoutes")(app);
+require("./routes/groupListRoutes")(app);
 require("./routes/eventsRoutes")(app);
 require("./routes/eventAttendeesRoutes")(app);
 

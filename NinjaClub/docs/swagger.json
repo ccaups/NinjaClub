@@ -667,7 +667,7 @@
                 }
             ]
         },
-        "/grouptraining": {
+        "/grouplist": {
             "get": {
                 "tags": [
                     "Group"
@@ -749,7 +749,7 @@
                 "description": "Add new group into the array."
             }
         },
-        "/grouptraining/{id}": {
+        "/grouplist/{id}": {
             "get": {
                 "tags": [
                     "GroupID"
@@ -1065,7 +1065,7 @@
                 }
             },
             "group": {
-                "title": "Root Type for GroupTraining",
+                "title": "Root Type for GroupList",
                 "description": "example of group",
                 "type": "object",
                 "properties": {

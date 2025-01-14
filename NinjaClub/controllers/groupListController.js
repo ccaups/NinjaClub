@@ -3,7 +3,7 @@ const Utils = require("./utlis");
 
 exports.getAll = async (req, res) => {
   try {
-    const allGroups = await db.groupTraining.findAll();
+    const allGroups = await db.GroupList.findAll();
     res.send(allGroups);
   } catch (error) {
     res.status(500).send({ error: error.message });
@@ -38,11 +38,11 @@ exports.create = async (req, res) => {
       CoachID: req.body.CoachID,
     };
 
-    const createdGroup = await db.groupTraining.create(newGroup);
+    const createdGroup = await db.GroupList.create(newGroup);
 
     res
       .status(201)
-      .location(`${Utils.getBaseURL(req)}/groupTraining/${createdGroup.GroupID}`)
+      .location(`${Utils.getBaseURL(req)}/GroupList/${createdGroup.GroupID}`)
       .send(createdGroup);
   } catch (error) {
     res.status(500).send({ error: error.message });
@@ -72,7 +72,7 @@ exports.editById = async (req, res) => {
 
     res
       .status(200)
-      .location(`${Utils.getBaseURL(req)}/groupTraining/${group.GroupID}`)
+      .location(`${Utils.getBaseURL(req)}/GroupList/${group.GroupID}`)
       .send(group);
   } catch (error) {
     res.status(500).send({ error: error.message });
@@ -99,7 +99,7 @@ const getGroup = async (req, res) => {
     return null;
   }
 
-  const group = await db.groupTraining.findByPk(idNumber);
+  const group = await db.GroupList.findByPk(idNumber);
   if (!group) {
     res.status(404).send({ error: "Group training not found" });
     return null;
