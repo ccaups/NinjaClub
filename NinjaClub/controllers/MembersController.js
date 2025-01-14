@@ -70,7 +70,7 @@ exports.editById = async (req,res) => {
   member.Level = req.body.Level,
   await member.save();
   return res.status(201)
-      .location(`${Utlis.getBaseUrl(req)}/members/${member.memberID}`)
+      .location(`${Utlis.getBaseURL(req)}/members/${member.memberID}`)
       .send(member);
 }
 
