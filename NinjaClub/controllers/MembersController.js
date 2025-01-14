@@ -12,8 +12,6 @@ exports.getAll = async (req, res) => {
 
 exports.getById = async (req, res) => {
   const member = await getMember(req, res);
-  console.log("req.params.MemberID:", req.params.MemberID);
-  console.log("Member:", member)
   if (!member) { return};
   return res.send(member);
   }
@@ -82,10 +80,10 @@ exports.deleteById = async (req, res) => {
 }
 
 const getMember = async (req, res) => {
-  const idNumber = parseInt(req.params.MemberID,10);
+  const idNumber = parseInt(req.params.id);
   console.log("id:", idNumber)
   if (isNaN(idNumber)) {
-      res.status(400).send({error: `Invalid member ID ${req.params.MemberID}`});
+      res.status(400).send({error: `Invalid member ID ${req.params.id}`});
       return null;
   }
   const member = await db.Members.findByPk(idNumber);

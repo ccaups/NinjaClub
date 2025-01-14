@@ -48,33 +48,3 @@ export default {
   },
 };
 </script>
-
-<!-- Teine võimalus -->
-<!-- <template>
-  <h1>Members</h1>
-  Pass members to the MemberTable and listen to 'memberAction' event
-  <MemberTable :members="members" @memberAction="handleMemberAction" />
-</template> -->
-
-<!-- memberAction(id, action) {
-  switch (action) {
-    case 'detail':
-      console.log('Redirecting to details for MemberID:', id);
-      this.$router.push({ name: 'MemberDetail', params: { id } });
-      break;
-    case 'update':
-      console.log('Redirecting to update for MemberID:', id);
-      this.$router.push({ name: 'MemberUpdate', params: { id } });
-      break;
-    case 'delete':
-      console.log('Redirecting to delete for MemberID:', id);
-      this.$router.push({ name: 'MemberDelete', params: { id } });
-      break;
-    default:
-      console.warn('Invalid action type:', action);
-  }
-},    
-mounted() {
-  // Listen to the event from MemberTable
-  this.$on('memberAction', this.memberAction);
-} -->

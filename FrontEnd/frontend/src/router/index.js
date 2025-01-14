@@ -13,12 +13,6 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
     },
-
-    {
-      path: '/coaches',
-      name: 'coaches',
-      component: CoachesView,
-    },
     {
       path: '/about',
       name: 'about',
@@ -63,7 +57,7 @@ const router = createRouter({
       component: () => import('@/Groups/GroupCreate.vue'),
     },
     {
-      path: '/groups/view/:id',  // Path for member details
+      path: '/groups/:id',  // Path for member details
       name: 'GroupDetail',
       component: () => import('@/Groups/GroupDetail.vue'),
       props: true,
@@ -80,10 +74,40 @@ const router = createRouter({
       component: () => import('@/Groups/GroupDelete.vue'),
       props: true,
     },
+
+    {
+      path: '/coaches',
+      name: 'coaches',
+      component: CoachesView,
+    },
+    {
+      path: '/coaches/:id',  // Path for coach details
+      name: 'CoachDetail',
+      component: () => import('@/Coaches/CoachDetail.vue'),
+      props: true,
+    },
+    {
+      path: '/coaches/create',
+      name: 'CoachCreate',
+      component: () => import('@/Coaches/CoachCreate.vue'),
+    },
+    {
+      path: '/coaches/edit/:id',  // Path for updating coach
+      name: 'CoachEdit',
+      component: () => import('@/Coaches/CoachEdit.vue'),
+      props: true,
+    },
+    {
+      path: '/coaches/delete/:id',  // Path for deleting coach
+      name: 'CoachDelete',
+      component: () => import('@/Coaches/CoachDelete.vue'),
+      props: true,
+    },
     {
       path: '/:pathMatch(.*)*',  // Catch-all route for not found pages
       name: 'not-found',
       component: () => import('@/views/NotFound.vue'),
+      
     },
   ],
 });
