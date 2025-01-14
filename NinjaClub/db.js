@@ -23,12 +23,9 @@ const sequelize = new Sequelize (
 const db = {}
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
-db.members = require("./models/Members")(sequelize, DataTypes);
-db.coaches = require("./models/Coaches")(sequelize, DataTypes);
-db.GroupTraining = require('./models/GroupTraining')(sequelize, DataTypes);
-db.events = require('./models/Events')(sequelize, DataTypes);
-db.eventattendees = require('./models/EventAttendees')(sequelize, DataTypes);
 
+
+//alter or force
 const sync = (async () => {
     await sequelize.sync({alter: true});
     console.log("Models have been synchronised successfully!")
@@ -37,18 +34,37 @@ const sync = (async () => {
 module.exports = {db , sync};
 
 db.Members = require('./models/Members')(sequelize, DataTypes);
-// db.Coach = require('./models/Coaches')(sequelize, DataTypes);
-// db.GroupList = require('./models/GroupList')(sequelize, DataTypes);
-// db.Events = require('./models/Events')(sequelize, DataTypes);
-// db.EventAttendees = require('./models/EventAttendees')(sequelize, DataTypes);
+db.GroupTraining = require('./models/GroupTraining')(sequelize, DataTypes);
+db.Coaches = require('./models/Coaches')(sequelize, DataTypes);
+db.Events = require('./models/Events')(sequelize, DataTypes);
+db.EventAttendees = require('./models/EventAttendees')(sequelize, DataTypes);
 
+// Coaches and GroupTraining
+db.Coaches.hasMany(db.GroupTraining, { foreignKey: 'CoachID' });
+db.GroupTraining.belongsTo(db.Coaches, { foreignKey: 'CoachID' });
 
-// Coach.hasMany(GroupList, { foreignKey: 'CoachID' });
-// GroupList.belongsTo(Coach, { foreignKey: 'CoachID' });
+// Members and GroupTraining
+db.Members.hasMany(db.GroupTraining, { foreignKey: 'MemberID' });
+db.GroupTraining.belongsTo(db.Members, { foreignKey: 'MemberID' });
 
-// Members.hasMany(GroupList, { foreignKey: 'MemberID' });
-// GroupList.belongsTo(Members, { foreignKey: 'MemberID' });
-// Coach.hasMany(Events, { foreignKey: 'CoachID' });
-// Events.belongsTo(Coach, { foreignKey: 'CoachID' });
+// Coaches and Events
+db.Coaches.hasMany(db.Events, { foreignKey: 'CoachID' });
+db.Events.belongsTo(db.Coaches, { foreignKey: 'CoachID' });
+
+// Events and EventAttendees
+db.Events.hasMany(db.EventAttendees, { foreignKey: 'EventID' });
+db.EventAttendees.belongsTo(db.Events, { foreignKey: 'EventID' });
+
+// Members and EventAttendees
+db.Members.hasMany(db.EventAttendees, { foreignKey: 'MemberID' });
+db.EventAttendees.belongsTo(db.Members, { foreignKey: 'MemberID' });
+
+// Events and EventAttendees
+db.Events.hasMany(db.EventAttendees, { foreignKey: 'EventID' });
+db.EventAttendees.belongsTo(db.Events, { foreignKey: 'EventID' });
+
+// Coaches and Group (Additional relationship for GroupID)
+db.Coaches.belongsTo(db.GroupTraining, { foreignKey: 'GroupID' });
+
 
 module.exports = {db, sync};

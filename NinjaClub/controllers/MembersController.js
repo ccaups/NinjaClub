@@ -1,59 +1,36 @@
-// const {db} = require("../db");
-
-
-// exports.getAll = async (req, res) => { 
-//     const members = await db.members.findAll();
-//     console.log(members)
-//     res
-//     .send(members
-//         .map(({MemberID, FirstName}) => {return {MemberID, FirstName}}))
-// }
-
-
 const {db} = require("../db");
-const Utils = require("./utlis");
+const Utlis = require("./utlis");
 
 
-exports.getAll = async (req, res) => {
-  try {
-    const allMemberNames = await db.members.findAll({
-      attributes: ['FirstName','LastName','MemberID'] // Valib ainult 'name' veeru
-    });
+exports.getAll = async (req, res) => { 
+    const members = await db.Members.findAll();
 
-    res.send(allMemberNames);
-  } catch (error) {
-    res.status(500).send({ error: error.message });
-  }
-};
+    res
+    .send(members
+        .map(({MemberID, FirstName,LastName}) => {return {MemberID, FirstName,LastName}}))
+}
 
 exports.getById = async (req, res) => {
-  try {
-    const member = await getMember(req, res);
-    if (!member) return;
-    res.send(member);
-  } catch (error) {
-    res.status(500).send({ error: error.message });
+  const member = await getMember(req, res);
+  console.log("req.params.MemberID:", req.params.MemberID);
+  console.log("Member:", member)
+  if (!member) { return};
+  return res.send(member);
   }
-};
 
 exports.create = async (req, res) => {
-  try {
-    // Validate required fields
-    if (
-      !req.body.FirstName ||
+  if (!req.body.FirstName || 
       !req.body.LastName ||
       !req.body.Address ||
+      !req.body.LastName ||
       !req.body.PhoneNumber ||
       !req.body.Email ||
       !req.body.RegistrationDate ||
-      typeof req.body.Active === "undefined" ||
-      typeof req.body.Level === "undefined"
-    ) {
-      return res.status(400).send({ error: "Missing required fields" });
-    }
+      !req.body.Active ||
+      !req.body.Level) 
+  {   return res.status(400).send({error: "One or multiple parameters are missing"});    }
 
-    // Create a new member object
-    const newMember = {
+  let newMember = {        
       FirstName: req.body.FirstName,
       LastName: req.body.LastName,
       Address: req.body.Address,
@@ -62,86 +39,59 @@ exports.create = async (req, res) => {
       RegistrationDate: req.body.RegistrationDate,
       Active: req.body.Active,
       Level: req.body.Level,
-    };
-
-    // Insert into DB
-    const createdMember = await db.members.create(newMember);
-
-    // Return the ID or entire object
-    res
-      .status(201)
-      .location(`${Utils.getBaseURL(req)}/members/${createdMember.MemberID}`)
-      .send(createdMember);
-  } catch (error) {
-    res.status(500).send({ error: error.message });
   }
-};
+  const createdMember = await db.Members.create(newMember);
+  res/*.status(201)*/
+      .location(`${Utlis.getBaseURL(req)}/members/${createdMember.MemberID}`)
+      .sendStatus(201);
+}
 
-exports.editById = async (req, res) => {
-  try {
-    const member = await getMember(req, res);
-    if (!member) return;
-
-    // Validate
-    if (
-      !req.body.FirstName ||
+exports.editById = async (req,res) => {
+  const member = await getMember(req, res);
+  if (!member) { return };
+  if (!req.body.FirstName || 
       !req.body.LastName ||
       !req.body.Address ||
+      !req.body.LastName ||
       !req.body.PhoneNumber ||
       !req.body.Email ||
       !req.body.RegistrationDate ||
-      typeof req.body.Active === "undefined" ||
-      typeof req.body.Level === "undefined"
-    ) {
-      return res.status(400).send({ error: "Missing required fields" });
-    }
+      !req.body.Active ||
+      !req.body.Level) 
+  {   return res.status(400).send({error: "One or multiple parameters are missing"});    }
 
-    // Update
-    member.FirstName = req.body.FirstName;
-    member.LastName = req.body.LastName;
-    member.Address = req.body.Address;
-    member.PhoneNumber = req.body.PhoneNumber;
-    member.Email = req.body.Email;
-    member.RegistrationDate = req.body.RegistrationDate;
-    member.Active = req.body.Active;
-    member.Level = req.body.Level;
-
-    // Save in DB
-    await member.save();
-
-    return res
-      .status(200)
-      .location(`${Utils.getBaseURL(req)}/members/${member.MemberID}`)
+  member.FirstName = req.body.FirstName,
+  member.LastName = req.body.LastName,
+  member.Address = req.body.Address,
+  member.PhoneNumber = req.body.PhoneNumber,
+  member.Email = req.body.Email,
+  member.RegistrationDate = req.body.RegistrationDate,
+  member.Active = req.body.Active,
+  member.Level = req.body.Level,
+  await member.save();
+  return res.status(201)
+      .location(`${Utlis.getBaseUrl(req)}/members/${member.memberID}`)
       .send(member);
-  } catch (error) {
-    res.status(500).send({ error: error.message });
-  }
-};
+}
 
 exports.deleteById = async (req, res) => {
-  try {
-    const member = await getMember(req, res);
-    if (!member) return;
-
-    await member.destroy();
-    return res.status(204).send();
-  } catch (error) {
-    res.status(500).send({ error: error.message });
-  }
-};
-
+  const member = await getMember(req,res);
+  if (!member) { return };
+  await member.destroy();
+  res.status(204).send({error: "No Content"});
+}
 
 const getMember = async (req, res) => {
-  const idNumber = parseInt(req.params.id);
+  const idNumber = parseInt(req.params.MemberID,10);
+  console.log("id:", idNumber)
   if (isNaN(idNumber)) {
-    res.status(400).send({ error: `Invalid member ID ${req.params.id}` });
-    return null;
+      res.status(400).send({error: `Invalid member ID ${req.params.MemberID}`});
+      return null;
   }
-
-  const member = await db.members.findByPk(idNumber);
+  const member = await db.Members.findByPk(idNumber);
   if (!member) {
-    res.status(404).send({ error: "Member not found" });
-    return null;
+      res.status(404).send({error: "Member not found"});
+      return null;
   }
   return member;
-};
+}

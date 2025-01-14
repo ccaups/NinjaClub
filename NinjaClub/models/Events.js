@@ -33,14 +33,14 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
 
-    Events.associate = (models) => {
-        Events.belongsTo(models.Coaches, {
-            foreignKey: 'CoachID',
-        });
-        Events.hasMany(models.EventAttendees, {
-            foreignKey: 'EventID',
-        });
-    };
+    // Events.associate = (models) => {
+    //     Events.belongsTo(models.Coaches, {
+    //         foreignKey: 'CoachID',
+    //     });
+    //     Events.hasMany(models.EventAttendees, {
+    //         foreignKey: 'EventID',
+    //     });
+    // };
 
     return Events;
 };
