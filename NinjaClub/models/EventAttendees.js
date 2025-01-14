@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
                 primaryKey: true,
                 autoIncrement: true,
                 allowNull: false,
+                field: 'EventAttendeesID'
             },
             MemberID: {
                 type: DataTypes.INTEGER,
@@ -15,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
                     model: 'Members', // Tabeli nimi, millele viitab
                     key: 'MemberID',
                 },
+                field: 'MemberID'
             },
             EventID: {
                 type: DataTypes.INTEGER,
@@ -23,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
                     model: 'Events', // Tabeli nimi, millele viitab
                     key: 'EventID',
                 },
+                field: 'EventID'
             },
         }, {
             tableName: 'EventAttendees',

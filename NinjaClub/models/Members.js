@@ -48,6 +48,11 @@ module.exports = (sequelize, DataTypes) => {
           allowNull: false,
           field: 'Level'
         },
+        GroupID: {
+          type: DataTypes.INTEGER,
+          allowNull: true,
+          field: 'GroupID'
+        },
       },
       {
         tableName: 'Members',

@@ -23,10 +23,10 @@ module.exports = (sequelize, DataTypes) => {
           allowNull: false,
           field: 'LastName'
         },
-        Aadress: {
+        Address: {
           type: DataTypes.TEXT,
           allowNull: false,
-          field: 'Aadress'
+          field: 'Address'
         },
         PhoneNumber: {
           type: DataTypes.TEXT,

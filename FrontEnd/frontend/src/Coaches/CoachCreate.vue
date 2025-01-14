@@ -22,10 +22,10 @@
         <label for="email">Email:</label>
         <input type="email" v-model="newCoach.Email" required />
       </div>
-      <div>
+      <!-- <div>
         <label for="groupId">Group ID:</label>
         <input type="number" v-model="newCoach.GroupID" min="1" />
-      </div>
+      </div> -->
 
       <button type="submit">Create Coach</button>
     </form>
@@ -40,10 +40,9 @@ export default {
       newCoach: {
         FirstName: '',
         LastName: '',
-        Aadress: '',
+        Address: '',
         PhoneNumber: '',
         Email: '',
-        GroupID: null, // Default value can be null
       },
     };
   },

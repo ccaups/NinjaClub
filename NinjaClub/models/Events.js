@@ -6,26 +6,32 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.INTEGER,
                 primaryKey: true,
                 autoIncrement: true,
+                field: 'EventID'
             },
             CoachID: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
+                field: 'CoachID'
             },
             Name: {
                 type: DataTypes.STRING,
                 allowNull: false,
+                field: 'Name'
             },
             Date: {
                 type: DataTypes.STRING,
                 allowNull: false,
+                field: 'Date'
             },
             Location: {
                 type: DataTypes.STRING,
                 allowNull: false,
+                field: 'Location'
             },
             Description: {
                 type: DataTypes.STRING,
                 allowNull: true,
+                field: 'Description'
             },
         },
         {
