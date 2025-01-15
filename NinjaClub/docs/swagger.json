@@ -1012,6 +1012,286 @@
                     "required": true
                 }
             ]
+        },
+        "/events": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "List of events": {
+                                        "value": [
+                                            "Shadow Tactics Training",
+                                            "Kunoichi Survival Skills",
+                                            "Silent Blade Workshop",
+                                            "Night Vision Challenge"
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return a list of events"
+                    }
+                },
+                "summary": "Get list of events",
+                "description": "Returns a list of events from the api"
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/event"
+                            },
+                            "examples": {
+                                "Create an event": {
+                                    "value": {
+                                        "EventID": "4",
+                                        "CoachID": "1",
+                                        "Name": "Night Vision Challenge",
+                                        "Date": "2025-05-10",
+                                        "Location": "Moonlit Temple Grounds",
+                                        "Description": "Test your stealth and awareness in low-light conditions in this thrilling night-time event."
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "examples": {
+                                    "Event that is added": {
+                                        "value": [
+                                            {
+                                                "EventID": "3",
+                                                "CoachID": "9",
+                                                "Name": "Silent Blade Workshop",
+                                                "Date": "2025-04-20",
+                                                "Location": "Underground Training Chamber",
+                                                "Description": "Hone your skills with the blade and master the silent takedown in this exclusive workshop."
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Return code 201 to user if creation of new event was successful."
+                    }
+                },
+                "summary": "Add new member",
+                "description": "Add a new event into the array.\n"
+            }
+        },
+        "/events/{eventId}": {
+            "summary": "Path used to manage a single event.",
+            "description": "The REST endpoint/path used to get, update, and delete single instances of an `event`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/event"
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns a single `event`."
+                    }
+                },
+                "operationId": "getevent",
+                "summary": "Get a event",
+                "description": "Gets the details of a single instance of a `event`."
+            },
+            "put": {
+                "requestBody": {
+                    "description": "Updated `event` information.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/event"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "updateevent",
+                "summary": "Update a event",
+                "description": "Updates an existing `event`."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "deleteevent",
+                "summary": "Delete a event",
+                "description": "Deletes an existing `event`."
+            },
+            "parameters": [
+                {
+                    "name": "eventId",
+                    "description": "A unique identifier for a `event`.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/eventattendees": {
+            "summary": "Path used to manage the list of eventattendees.",
+            "description": "The REST endpoint/path used to list and create zero or more `eventattendees` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/eventattendees"
+                                    }
+                                },
+                                "examples": {
+                                    "Example": {
+                                        "value": [
+                                            {
+                                                "EventAttendeesID": 1,
+                                                "MemberID": 101,
+                                                "EventID": 202,
+                                                "RSVPStatus": "Accepted"
+                                            },
+                                            {
+                                                "EventAttendeesID": 2,
+                                                "MemberID": 102,
+                                                "EventID": 203,
+                                                "RSVPStatus": "Pending"
+                                            },
+                                            {
+                                                "EventAttendeesID": 3,
+                                                "MemberID": 103,
+                                                "EventID": 204,
+                                                "RSVPStatus": "Declined"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns an array of `eventattendees` entities."
+                    }
+                },
+                "operationId": "geteventattendees",
+                "summary": "List All eventattendees",
+                "description": "Gets a list of all `eventattendees` entities."
+            },
+            "post": {
+                "requestBody": {
+                    "description": "A new `eventattendees` to be created.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/eventattendees"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "createeventattendees",
+                "summary": "Create a eventattendees",
+                "description": "Creates a new instance of a `eventattendees`."
+            }
+        },
+        "/eventattendees/{eventattendeesId}": {
+            "summary": "Path used to manage a single eventattendees.",
+            "description": "The REST endpoint/path used to get, update, and delete single instances of an `eventattendees`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/eventattendees"
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns a single `eventattendees`."
+                    }
+                },
+                "operationId": "geteventattendee",
+                "summary": "Get a eventattendees",
+                "description": "Gets the details of a single instance of a `eventattendees`."
+            },
+            "put": {
+                "requestBody": {
+                    "description": "Updated `eventattendees` information.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/eventattendees"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "updateeventattendees",
+                "summary": "Update a eventattendees",
+                "description": "Updates an existing `eventattendees`."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "deleteeventattendees",
+                "summary": "Delete a eventattendees",
+                "description": "Deletes an existing `eventattendees`."
+            },
+            "parameters": [
+                {
+                    "name": "eventattendeesId",
+                    "description": "A unique identifier for a `eventattendees`.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
         }
     },
     "components": {
@@ -1065,7 +1345,7 @@
                 }
             },
             "group": {
-                "title": "Root Type for GroupList",
+                "title": "Root Type for GroupTraining",
                 "description": "example of group",
                 "type": "object",
                 "properties": {
@@ -1143,6 +1423,54 @@
                     "Address": "Kuusk 1 Oks 2",
                     "Phonenumber": "5556661111",
                     "Email": "john.doe@example.com"
+                }
+            },
+            "event": {
+                "title": "Root Type for event",
+                "description": "example of submittable event",
+                "type": "object",
+                "properties": {
+                    "EventID": {
+                        "type": "string"
+                    },
+                    "CoachID": {
+                        "type": "string"
+                    },
+                    "Name": {
+                        "type": "string"
+                    },
+                    "Date": {
+                        "format": "date",
+                        "type": "string"
+                    },
+                    "Location": {
+                        "type": "string"
+                    },
+                    "Description": {
+                        "type": "string"
+                    }
+                },
+                "example": "{\n    \"EventID\": '1',\n    \"CoachID\": '6',\n    \"Name\": \"Shadow Tactics Training\",\n    \"Date\": \"2025-02-10\",\n    \"Location\": \"Hidden Dojo, Mountain Pass\",\n    \"Description\": \"Master the art of stealth, agility, and precision in this advanced ninja training session.\"\n}"
+            },
+            "eventattendees": {
+                "title": "Root Type for eventattendees",
+                "description": "example of a submittable event attendee",
+                "type": "object",
+                "properties": {
+                    "EventAttendeesID": {
+                        "type": "string"
+                    },
+                    "MemberID": {
+                        "type": "string"
+                    },
+                    "RSVPStatus": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "EventAttendeesID": "1",
+                    "MemberID": "3",
+                    "RSVPStatus": "Attending"
                 }
             }
         }
