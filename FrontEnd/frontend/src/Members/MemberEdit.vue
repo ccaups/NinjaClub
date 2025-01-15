@@ -22,11 +22,32 @@
         <label for="RegistrationDate">Registration Date:</label>
         <input v-model="member.RegistrationDate" type="date" id="RegistrationDate" required />
   
-        <label for="Active">Active:</label>
+        <!-- <label for="Active">Active:</label>
         <input v-model="member.Active" type="checkbox" id="Active" />
   
         <label for="Level">Level:</label>
-        <input v-model="member.Level" type="number" id="Level" required />
+        <input v-model="member.Level" type="number" id="Level" required /> -->
+
+        <div style="font-size: medium;padding: 5px;">
+          <label for="Level">Level Type :</label>
+          <select v-model="member.Level" type="number" id="Level" required style="margin-left: 20px; padding: 6px;">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            </select>
+        </div>
+
+        <div style="font-size: medium;padding: 5px;">
+          <label for="Active">Active :</label>
+          <select v-model="member.Active" type="checkbox" id="Active" style="margin-left: 20px; padding: 6px;">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+            </select>
+        </div>
+
+
   
         <button type="submit">Update Member</button>
       </form>

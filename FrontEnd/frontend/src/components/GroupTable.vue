@@ -8,17 +8,17 @@
             <th>MemberID</th>
             <th>GroupName</th>
             <th>Schedule</th>
-            <th>Actions</th>
+            <th >Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="group in groups" :key="groups.GroupID">
-            <td>{{ group.GroupID }}</td>
+            <td style="width:2vh;">{{ group.GroupID }}</td>
             <td>{{ group.CoachID }}</td>
             <td>{{ group.MemberID }}</td>
             <td>{{ group.GroupName }}</td>
             <td>{{ group.Schedule }}</td>
-            <td>
+            <td style="width:22vh;">
               <button @click="viewGroupByID(group.GroupID)">View</button>
               <button @click="editGroupByID(group.GroupID)">Edit</button>
               <button @click="deleteGroupByID(group.GroupID)">Delete</button>
@@ -62,12 +62,17 @@
   
   <style scoped>
   #createGroup{
+    padding: 10px 20px;
     margin-left: 0px;
     margin-top:0.7rem;
     background-color: green;
+    font-size:medium;
   
   }
-  
+  #createGroup:hover{
+  background-color: rgb(0, 92, 0);
+}
+
   .table {
     width: 100%;
     border-collapse: collapse;

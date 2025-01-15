@@ -6,15 +6,15 @@
           <th>ID</th>
           <th>First Name</th>
           <th>Last Name</th>
-          <th>Actions</th>
+          <th >Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="coach in coaches" :key="coach.CoachID">
-          <td>{{ coach.CoachID }}</td>
+          <td style="width:2vh;">{{ coach.CoachID }}</td>
           <td>{{ coach.FirstName }}</td>
           <td>{{ coach.LastName }}</td>
-          <td>
+          <td style="width:22vh;">
             <button @click="viewCoachByID(coach.CoachID)">View</button>
             <button @click="editCoachByID(coach.CoachID)">Edit</button>
             <button @click="deleteCoachByID(coach.CoachID)">Delete</button>
@@ -55,9 +55,14 @@ export default {
 
 <style scoped>
 #createCoach {
-  margin-left: 0px;
-  margin-top: 0.7rem;
-  background-color: green;
+  padding: 10px 20px;
+    margin-left: 0px;
+    margin-top:0.7rem;
+    background-color: green;
+    font-size:medium;
+}
+#createCoach:hover{
+  background-color: rgb(0, 92, 0);
 }
 
 .table {

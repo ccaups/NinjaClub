@@ -24,16 +24,33 @@
       </div>
       <div>
         <label for="registrationDate">Registration Date:</label>
-        <input type="text" v-model="newMember.RegistrationDate" placeholder="DD.MM.YYYY" required />
+        <input type="date" v-model="newMember.RegistrationDate" id="RegistrationDate" placeholder="DD.MM.YYYY" required />
       </div>
-      <div>
+      <!-- <div>
         <label for="level">Level:</label>
         <input type="number" v-model="newMember.Level" min="1" max="10" required />
-      </div>
-      <div>
-        <label for="active">Active:</label>
-        <input type="checkbox" v-model="newMember.Active" />
-      </div>
+      </div> -->
+      <div style="font-size: medium;">
+          <label for="newMember.Level">Level Type :</label>
+          <select v-model="newMember.Level" style="margin-left: 20px; padding: 6px;">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            </select>
+        </div>
+      <!-- <div>
+        <label for="checkbox" style=";">Active: {{ newMember.Active }}</label>
+        <input type="checkbox" id="checkbox" v-model="newMember.Active"/>
+      </div> -->
+      <div style="font-size: medium;">
+          <label for="newMember.Active">Active :</label>
+          <select v-model="newMember.Active" style="margin-left: 20px; padding: 6px;">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+            </select>
+        </div>
 
       <button type="submit">Create Member</button>
     </form>
@@ -91,7 +108,7 @@ export default {
 form {
   display: flex;
   flex-direction: column;
-  max-width: 400px;
+  max-width: none;
   margin: auto;
 }
 

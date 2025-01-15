@@ -13,10 +13,10 @@
       </thead>
       <tbody>
         <tr v-for="member in members" :key="member.MemberID">
-          <td>{{ member.MemberID }}</td>
+          <td style="width:2vh;">{{ member.MemberID }}</td>
           <td>{{ member.FirstName }}</td>
           <td>{{ member.LastName }}</td>
-          <td>
+          <td style="width:22vh;">
             <button @click="viewMemberByID(member.MemberID)">View</button>
             <button @click="editMemberByID(member.MemberID)">Edit</button>
             <button @click="deleteMemberByID(member.MemberID)">Delete</button>
@@ -60,10 +60,14 @@ export default {
 
 <style scoped>
 #createMember{
+  padding: 10px 20px;
   margin-left: 0px;
   margin-top:0.7rem;
   background-color: green;
-
+  font-size:medium;
+}
+#createMember:hover{
+  background-color: rgb(0, 92, 0);
 }
 
 .table {
@@ -85,6 +89,7 @@ button {
   border: none;
   border-radius: 3px;
   cursor: pointer;
+  font-size:small;
 }
 
 button:hover {

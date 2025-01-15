@@ -20,25 +20,3 @@ a,
     background-color: hsla(160, 100%, 37%, 0.2);
   }
 }
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  html, body {
-    height: 100%;  /* Veendu, et HTML ja body võtaksid kogu ekraani kõrguse */
-    margin: 0;  /* Eemalda vaikimisi marginaalid */
-  }
-  
-  #app {
-    display: flex;
-    flex-direction: column; /* Paigutab elemendid vertikaalselt */
-    align-items: flex-start; /* Paiguta sisu vasakule */
-    justify-content: flex-start; /* Veendu, et sisu algaks ülevalt */
-    height: 100vh;  /* Võtab kogu ekraani kõrguse */
-    padding: 0 2rem;
-  }
-  
-}
