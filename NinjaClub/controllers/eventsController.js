@@ -3,7 +3,7 @@ const Utils = require("./utlis");
 
 exports.getAll = async (req, res) => {
   try {
-    const allEvents = await db.events.findAll();
+    const allEvents = await db.Events.findAll();
     res.send(allEvents);
   } catch (error) {
     res.status(500).send({ error: error.message });
@@ -40,7 +40,7 @@ exports.create = async (req, res) => {
       Description: req.body.Description,
     };
 
-    const createdEvent = await db.events.create(newEvent);
+    const createdEvent = await db.Events.create(newEvent);
 
     res
       .status(201)
@@ -53,24 +53,29 @@ exports.create = async (req, res) => {
 
 exports.editById = async (req, res) => {
   try {
-    const event = await getEvent(req, res);
-    if (!event) return;
+    const eventId = parseInt(req.params.id);
 
-    if (
-      !req.body.CoachID ||
-      !req.body.Name ||
-      !req.body.Date ||
-      !req.body.Location ||
-      !req.body.Description
-    ) {
-      return res.status(400).send({ error: "Missing required fields" });
+    if (isNaN(eventId)) {
+      return res.status(400).send({ error: `Invalid event ID: ${req.params.id}` });
     }
 
-    event.CoachID = req.body.CoachID;
-    event.Name = req.body.Name;
-    event.Date = req.body.Date;
-    event.Location = req.body.Location;
-    event.Description = req.body.Description;
+    const event = await db.Events.findByPk(eventId);
+    if (!event) {
+      return res.status(404).send({ error: 'Event not found' });
+    }
+
+    const { CoachID, Name, Date, Location, Description } = req.body;
+
+    if (!CoachID || !Name || !Date || !Location || !Description) {
+      return res.status(400).send({ error: 'Missing required fields' });
+    }
+
+    // Update the event fields
+    event.CoachID = CoachID;
+    event.Name = Name;
+    event.Date = Date;
+    event.Location = Location;
+    event.Description = Description;
 
     await event.save();
 
@@ -82,6 +87,7 @@ exports.editById = async (req, res) => {
     res.status(500).send({ error: error.message });
   }
 };
+
 
 exports.deleteById = async (req, res) => {
   try {

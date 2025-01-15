@@ -3,13 +3,12 @@ const Utils = require("./utlis");
 
 exports.getAll = async (req, res) => {
   try {
-    const allAttendees = await db.eventAttendees.findAll();
+    const allAttendees = await db.EventAttendees.findAll();
     res.send(allAttendees);
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
 };
-
 
 exports.getById = async (req, res) => {
   try {
@@ -33,13 +32,12 @@ exports.create = async (req, res) => {
       RSVPStatus: req.body.RSVPStatus,
     };
 
-    const createdAttendee = await db.eventAttendees.create(newAttendee);
+    const createdAttendee = await db.EventAttendees.create(newAttendee);
 
-    // For composite primary keys, the location might not be as simple:
     res
       .status(201)
       .location(
-        `${Utils.getBaseURL(req)}/eventAttendees/${createdAttendee.EventID}/${createdAttendee.MemberID}`
+        `${Utils.getBaseURL(req)}/eventAttendees/${createdAttendee.EventAttendeesID}`
       )
       .send(createdAttendee);
   } catch (error) {
@@ -62,7 +60,7 @@ exports.editById = async (req, res) => {
     res
       .status(200)
       .location(
-        `${Utils.getBaseURL(req)}/eventAttendees/${attendee.EventID}/${attendee.MemberID}`
+        `${Utils.getBaseURL(req)}/eventAttendees/${attendee.EventAttendeesID}`
       )
       .send(attendee);
   } catch (error) {
@@ -82,25 +80,15 @@ exports.deleteById = async (req, res) => {
   }
 };
 
-
 const getAttendee = async (req, res) => {
-  const eventId = parseInt(req.params.eventId);
-  const memberId = parseInt(req.params.memberId);
+  const attendeeId = parseInt(req.params.id);
 
-  if (isNaN(eventId) || isNaN(memberId)) {
-    res.status(400).send({
-      error: `Invalid IDs: eventId=${req.params.eventId}, memberId=${req.params.memberId}`,
-    });
+  if (isNaN(attendeeId)) {
+    res.status(400).send({ error: `Invalid EventAttendeesID: ${req.params.id}` });
     return null;
   }
 
-
-  const attendee = await db.eventAttendees.findOne({
-    where: {
-      EventID: eventId,
-      MemberID: memberId,
-    },
-  });
+  const attendee = await db.EventAttendees.findByPk(attendeeId);
 
   if (!attendee) {
     res.status(404).send({ error: "Event attendee not found" });

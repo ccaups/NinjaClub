@@ -4,6 +4,8 @@ import MembersView from '../views/MembersView.vue';
 import CoachesView from '../views/CoachesView.vue';
 import AboutView from '../views/AboutView.vue';
 import GroupsView from '../views/GroupsView.vue';
+import EventsView from '../views/EventsView.vue';
+import EventAttendeesView from '../views/EventAttendeesView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -103,6 +105,62 @@ const router = createRouter({
       component: () => import('@/Coaches/CoachDelete.vue'),
       props: true,
     },
+    {
+      path: '/events',
+      name: 'events',
+      component: EventsView,
+    },
+    {
+      path: '/events/:id',  // Path for event details
+      name: 'EventDetail',
+      component: () => import('@/Events/EventDetail.vue'),
+      props: true,
+    },
+    {
+      path: '/events/create',  // Path for creating a new event
+      name: 'EventCreate',
+      component: () => import('@/Events/EventCreate.vue'),
+    },
+    {
+      path: '/events/edit/:id',  // Path for updating an event
+      name: 'EventEdit',
+      component: () => import('@/Events/EventEdit.vue'),
+      props: true,
+    },
+    {
+      path: '/events/delete/:id',  // Path for deleting an event
+      name: 'EventDelete',
+      component: () => import('@/Events/EventDelete.vue'),
+      props: true,
+    },
+    {
+      path: '/eventattendees',
+      name: 'eventattendees',
+      component: EventAttendeesView,
+    },
+    {
+      path: '/eventattendees/:id',  // Path for event attendee details
+      name: 'EventAttendeeDetail',
+      component: () => import('@/EventAttendees/EventAttendeeDetail.vue'),
+      props: true,
+    },
+    {
+      path: '/eventattendees/create',  // Path for creating a new event attendee
+      name: 'EventAttendeeCreate',
+      component: () => import('@/EventAttendees/EventAttendeeCreate.vue'),
+    },
+    {
+      path: '/eventattendees/edit/:id',  // Path for updating an event attendee
+      name: 'EventAttendeeEdit',
+      component: () => import('@/EventAttendees/EventAttendeeEdit.vue'),
+      props: true,
+    },
+    {
+      path: '/eventattendees/delete/:id',  // Path for deleting an event attendee
+      name: 'EventAttendeeDelete',
+      component: () => import('@/EventAttendees/EventAttendeeDelete.vue'),
+      props: true,
+    },    
     {
       path: '/:pathMatch(.*)*',  // Catch-all route for not found pages
       name: 'not-found',
