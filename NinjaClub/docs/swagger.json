@@ -161,7 +161,7 @@
                                 "examples": {
                                     "Invalid member ID": {
                                         "value": {
-                                            "error": "Invalid Id entered."
+                                            "error": "Missing member ID parameter."
                                         }
                                     }
                                 }
@@ -178,7 +178,7 @@
                                 "examples": {
                                     "No found member": {
                                         "value": {
-                                            "error": "Member was not found in database."
+                                            "error": "Member not found."
                                         }
                                     }
                                 }

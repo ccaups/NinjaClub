@@ -11,10 +11,23 @@ exports.getAll = async (req, res) => {
 }
 
 exports.getById = async (req, res) => {
-  const member = await getMember(req, res);
-  if (!member) { return};
-  return res.send(member);
-  }
+    // Validate the presence of the required parameter (e.g., ID)
+    if (!req.params.id) {
+      return res.status(400).send({ error: "Missing member ID parameter." });
+    }
+
+    // Fetch the member
+    const member = await getMember(req, res);
+
+    // Return 404 if the member is not found
+    if (!member) {
+      return res.status(404).send({ error: "Member not found." });
+    }
+
+    // Return the member data
+    return res.status(200).send(member);
+};
+
 
 exports.create = async (req, res) => {
   if (!req.body.FirstName || 
