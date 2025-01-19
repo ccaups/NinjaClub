@@ -179,7 +179,7 @@ paths:
                             examples:
                                 Member ID was invalid:
                                     value:
-                                        error: Invalid Id entered.
+                                        error: One or multiple parameters are missing.
                     description: Return status code 400 to the user if invalid ID was entered.
                 '404':
                     content:
@@ -189,7 +189,7 @@ paths:
                             examples:
                                 Member ID not found:
                                     value:
-                                        error: Id was not found in member array.
+                                        error: Member not found.
                     description: Return error 404 to the user if member with this ID is not found.
             summary: Update full details for a member
         delete:

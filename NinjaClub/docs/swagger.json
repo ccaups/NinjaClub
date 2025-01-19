@@ -266,7 +266,7 @@
                                 "examples": {
                                     "Member ID was invalid": {
                                         "value": {
-                                            "error": "Invalid Id entered."
+                                            "error": "One or multiple parameters are missing."
                                         }
                                     }
                                 }
@@ -283,7 +283,7 @@
                                 "examples": {
                                     "Member ID not found": {
                                         "value": {
-                                            "error": "Id was not found in member array."
+                                            "error": "Member not found."
                                         }
                                     }
                                 }

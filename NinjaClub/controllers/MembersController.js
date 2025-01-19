@@ -46,6 +46,12 @@ exports.create = async (req, res) => {
 
 exports.editById = async (req,res) => {
   const member = await getMember(req, res);
+
+  // Return 404 if member is not found
+  if (!member) {
+    return res.status(404).send({ error: "Member not found" });
+  }
+
   if (!member) { return };
   if (!req.body.FirstName || 
       !req.body.LastName ||
