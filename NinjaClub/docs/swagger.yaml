@@ -629,7 +629,7 @@ paths:
                             examples:
                                 Succesfully deleted:
                                     value:
-                                        error: no content
+                                        error: Id was not found in group array.
                     description: 'Returned error, in case deletion was not found.'
             summary: Delete group details.
         parameters:

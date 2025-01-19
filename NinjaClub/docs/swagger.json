@@ -985,7 +985,7 @@
                                 "examples": {
                                     "Succesfully deleted": {
                                         "value": {
-                                            "error": "no content"
+                                            "error": "Id was not found in group array."
                                         }
                                     }
                                 }

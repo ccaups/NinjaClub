@@ -54,7 +54,7 @@ exports.editById = async (req, res) => {
     if (!group) {
       return res.status(404).send({ error: "Id was not found in group array." });
     }
-    
+
     if (
       !req.body.GroupName ||
       !req.body.Schedule ||
@@ -80,14 +80,21 @@ exports.editById = async (req, res) => {
 exports.deleteById = async (req, res) => {
   try {
     const group = await getGroup(req, res);
-    if (!group) return;
+
+    if (!group) {
+      return res.status(404).send({ error: "Id was not found in group array." });
+    }
 
     await group.destroy();
-    return res.status(204).send();
+    return res.status(204).send(); // Deleted successfully
   } catch (error) {
+    if (error.message.includes('bad request')) {
+      return res.status(400).send({ error: "Member ID was bad request." });
+    }
     res.status(500).send({ error: error.message });
   }
 };
+
 
 
 const getGroup = async (req, res) => {
