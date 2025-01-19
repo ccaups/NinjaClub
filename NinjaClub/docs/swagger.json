@@ -908,7 +908,7 @@
                                 "examples": {
                                     "Invalid group ID": {
                                         "value": {
-                                            "error": "Invalid Id entered."
+                                            "error": "Missing required fields."
                                         }
                                     }
                                 }

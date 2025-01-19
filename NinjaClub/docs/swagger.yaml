@@ -583,7 +583,7 @@ paths:
                             examples:
                                 Invalid group ID:
                                     value:
-                                        error: Invalid Id entered.
+                                        error: Missing required fields.
                     description: Return status code 400 to the user if invalid ID was entered.
                 '404':
                     content:

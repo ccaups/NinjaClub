@@ -50,10 +50,11 @@ exports.create = async (req, res) => {
 };
 
 exports.editById = async (req, res) => {
-  try {
     const group = await getGroup(req, res);
-    if (!group) return;
-
+    if (!group) {
+      return res.status(404).send({ error: "Id was not found in group array." });
+    }
+    
     if (
       !req.body.GroupName ||
       !req.body.Schedule ||
@@ -74,10 +75,7 @@ exports.editById = async (req, res) => {
       .status(200)
       .location(`${Utils.getBaseURL(req)}/GroupList/${group.GroupID}`)
       .send(group);
-  } catch (error) {
-    res.status(500).send({ error: error.message });
   }
-};
 
 exports.deleteById = async (req, res) => {
   try {
