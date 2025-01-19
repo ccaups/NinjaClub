@@ -308,7 +308,7 @@
                                 "examples": {
                                     "Successfully deleted": {
                                         "value": {
-                                            "error": "no content"
+                                            "error": "Member deleted successfully"
                                         }
                                     }
                                 }
@@ -324,7 +324,9 @@
                                 },
                                 "examples": {
                                     "Bad request": {
-                                        "value": "\n[\n  {\n    \"error\": \"Member ID was bad request.\"\n  }\n]"
+                                        "value": {
+                                            "error": "Member does not exist"
+                                        }
                                     }
                                 }
                             }
@@ -339,11 +341,9 @@
                                 },
                                 "examples": {
                                     "Member ID was not found.": {
-                                        "value": [
-                                            {
-                                                "error": "Member\\w+ was not found in member array."
-                                            }
-                                        ]
+                                        "value": {
+                                            "error": "Bad Request: ID is required"
+                                        }
                                     }
                                 }
                             }

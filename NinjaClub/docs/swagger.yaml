@@ -204,7 +204,7 @@ paths:
                             examples:
                                 Successfully deleted:
                                     value:
-                                        error: no content
+                                        error: Member deleted successfully
                     description: 'Returned error, in case deletion was successful.'
                 '400':
                     content:
@@ -213,13 +213,8 @@ paths:
                                 $ref: '#/components/schemas/error'
                             examples:
                                 Bad request:
-                                    value: |-
-
-                                        [
-                                          {
-                                            "error": "Member ID was bad request."
-                                          }
-                                        ]
+                                    value:
+                                        error: Member does not exist
                     description: 'Returned error, in case deletion was bad request.'
                 '404':
                     content:
@@ -229,8 +224,7 @@ paths:
                             examples:
                                 Member ID was not found.:
                                     value:
-                                        -
-                                            error: Member\w+ was not found in member array.
+                                        error: 'Bad Request: ID is required'
                     description: 'Returned error, in case deletion was not found.'
             summary: Delete full details for a member
         parameters:

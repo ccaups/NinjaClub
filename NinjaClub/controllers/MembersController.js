@@ -73,11 +73,21 @@ exports.editById = async (req,res) => {
 }
 
 exports.deleteById = async (req, res) => {
-  const member = await getMember(req,res);
-  if (!member) { return };
+  // Check if ID is provided
+  if (!req.params.id) {
+    return res.status(400).send({ error: "ID is required" });
+  }
+
+  // Attempt to retrieve the member
+  const member = await getMember(req, res);
+  if (!member) {
+    return res.status(404).send({ error: "Member does not exist" });
+  }
+
+  // Delete the member if found
   await member.destroy();
-  res.status(204).send({error: "No Content"});
-}
+  res.status(204).send({error: "Member deleted successfully"});
+};
 
 const getMember = async (req, res) => {
   const idNumber = parseInt(req.params.id);
