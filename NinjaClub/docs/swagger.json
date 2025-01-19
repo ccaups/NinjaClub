@@ -1047,6 +1047,9 @@
         },
         "/events": {
             "get": {
+                "tags": [
+                    "Events"
+                ],
                 "responses": {
                     "200": {
                         "content": {
@@ -1097,6 +1100,9 @@
                         }
                     }
                 },
+                "tags": [
+                    "Events"
+                ],
                 "responses": {
                     "201": {
                         "content": {
@@ -1134,6 +1140,9 @@
             "summary": "Path used to manage a single event.",
             "description": "The REST endpoint/path used to get, update, and delete single instances of an `event`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
             "get": {
+                "tags": [
+                    "EventID"
+                ],
                 "responses": {
                     "200": {
                         "content": {
@@ -1162,6 +1171,9 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "EventID"
+                ],
                 "responses": {
                     "202": {
                         "description": "Successful response."
@@ -1172,6 +1184,9 @@
                 "description": "Updates an existing `event`."
             },
             "delete": {
+                "tags": [
+                    "EventID"
+                ],
                 "responses": {
                     "204": {
                         "description": "Successful response."
@@ -1197,6 +1212,9 @@
             "summary": "Path used to manage the list of eventattendees.",
             "description": "The REST endpoint/path used to list and create zero or more `eventattendees` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
             "get": {
+                "tags": [
+                    "EventAttendees"
+                ],
                 "responses": {
                     "200": {
                         "content": {
@@ -1252,6 +1270,9 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "EventAttendees"
+                ],
                 "responses": {
                     "201": {
                         "description": "Successful response."
@@ -1266,6 +1287,9 @@
             "summary": "Path used to manage a single eventattendees.",
             "description": "The REST endpoint/path used to get, update, and delete single instances of an `eventattendees`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
             "get": {
+                "tags": [
+                    "EventAttendeesID"
+                ],
                 "responses": {
                     "200": {
                         "content": {
@@ -1294,6 +1318,9 @@
                     },
                     "required": true
                 },
+                "tags": [
+                    "EventAttendeesID"
+                ],
                 "responses": {
                     "202": {
                         "description": "Successful response."
@@ -1304,6 +1331,9 @@
                 "description": "Updates an existing `eventattendees`."
             },
             "delete": {
+                "tags": [
+                    "EventAttendeesID"
+                ],
                 "responses": {
                     "204": {
                         "description": "Successful response."

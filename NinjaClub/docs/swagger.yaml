@@ -663,6 +663,8 @@ paths:
                 required: true
     /events:
         get:
+            tags:
+                - Events
             responses:
                 '200':
                     content:
@@ -698,6 +700,8 @@ paths:
                                     Description: >-
                                         Test your stealth and awareness in low-light conditions in this
                                         thrilling night-time event.
+            tags:
+                - Events
             responses:
                 '201':
                     content:
@@ -729,6 +733,8 @@ paths:
             contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks,
             respectively.
         get:
+            tags:
+                - EventID
             responses:
                 '200':
                     content:
@@ -747,6 +753,8 @@ paths:
                         schema:
                             $ref: '#/components/schemas/event'
                 required: true
+            tags:
+                - EventID
             responses:
                 '202':
                     description: Successful response.
@@ -754,6 +762,8 @@ paths:
             summary: Update a event
             description: Updates an existing `event`.
         delete:
+            tags:
+                - EventID
             responses:
                 '204':
                     description: Successful response.
@@ -774,6 +784,8 @@ paths:
             The REST endpoint/path used to list and create zero or more `eventattendees` entities.  This path
             contains a `GET` and `POST` operation to perform the list and create tasks, respectively.
         get:
+            tags:
+                - EventAttendees
             responses:
                 '200':
                     content:
@@ -812,6 +824,8 @@ paths:
                         schema:
                             $ref: '#/components/schemas/eventattendees'
                 required: true
+            tags:
+                - EventAttendees
             responses:
                 '201':
                     description: Successful response.
@@ -825,6 +839,8 @@ paths:
             This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and
             delete tasks, respectively.
         get:
+            tags:
+                - EventAttendeesID
             responses:
                 '200':
                     content:
@@ -843,6 +859,8 @@ paths:
                         schema:
                             $ref: '#/components/schemas/eventattendees'
                 required: true
+            tags:
+                - EventAttendeesID
             responses:
                 '202':
                     description: Successful response.
@@ -850,6 +868,8 @@ paths:
             summary: Update a eventattendees
             description: Updates an existing `eventattendees`.
         delete:
+            tags:
+                - EventAttendeesID
             responses:
                 '204':
                     description: Successful response.
