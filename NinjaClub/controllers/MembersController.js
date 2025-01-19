@@ -52,7 +52,7 @@ exports.create = async (req, res) => {
       Level: req.body.Level,
   }
   const createdMember = await db.Members.create(newMember);
-  res/*.status(201)*/
+  res.status(201)
       .location(`${Utlis.getBaseURL(req)}/members/${createdMember.MemberID}`)
       .sendStatus(201);
 }
