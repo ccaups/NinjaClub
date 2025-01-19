@@ -13,12 +13,17 @@ exports.getAll = async (req, res) => {
 exports.getById = async (req, res) => {
   try {
     const group = await getGroup(req, res);
-    if (!group) return;
+    
+    if (!group) {
+      return res.status(400).send({ error: "ID group bad Request" }); // 400 for invalid input
+    }
+    
     res.send(group);
   } catch (error) {
-    res.status(500).send({ error: error.message });
+    res.status(404).send({ error: "ID group not found" }); // 404 for not found
   }
 };
+
 
 exports.create = async (req, res) => {
   try {

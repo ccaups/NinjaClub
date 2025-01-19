@@ -443,6 +443,24 @@ paths:
                                         - Starter
                                         - Pro
                     description: Return a list of groups
+                '400':
+                    content:
+                        application/json:
+                            schema:
+                                type: string
+                            examples:
+                                bad request:
+                                    value:
+                                        error: ID group bad Request
+                '404':
+                    content:
+                        application/json:
+                            schema:
+                                type: string
+                            examples:
+                                Not found:
+                                    value:
+                                        error: ID group not found
             summary: Get list of group from api
             description: Returns a list of all group in the API to the requesting user
         post:
