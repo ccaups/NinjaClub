@@ -20,6 +20,30 @@ exports.getById = async (req, res) => {
   }
 };
 
+exports.create = async (req, res) => {
+  try {
+    if (!req.body.EventID || !req.body.MemberID || !req.body.RSVPStatus) {
+      return res.status(400).send({ error: "Missing required fields" });
+    }
+
+    const newAttendee = {
+      EventID: req.body.EventID,
+      MemberID: req.body.MemberID,
+      RSVPStatus: req.body.RSVPStatus,
+    };
+
+    const createdAttendee = await db.EventAttendees.create(newAttendee);
+
+    res
+      .status(201)
+      .location(
+        `${Utils.getBaseURL(req)}/eventAttendees/${createdAttendee.EventAttendeesID}`
+      )
+      .send(createdAttendee);
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+};
 
 exports.editById = async (req, res) => {
   try {
