@@ -10,7 +10,15 @@ exports.getAll = async (req, res) => {
   }
 };
 
-
+exports.getById = async (req, res) => {
+  try {
+    const event = await getEvent(req, res);
+    if (!event) return;
+    res.send(event);
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+};
 
 exports.create = async (req, res) => {
   try {
@@ -94,3 +102,17 @@ exports.deleteById = async (req, res) => {
 };
 
 
+const getEvent = async (req, res) => {
+  const idNumber = parseInt(req.params.id);
+  if (isNaN(idNumber)) {
+    res.status(400).send({ error: `Invalid event ID ${req.params.id}` });
+    return null;
+  }
+
+  const event = await db.events.findByPk(idNumber);
+  if (!event) {
+    res.status(404).send({ error: "Event not found" });
+    return null;
+  }
+  return event;
+};
