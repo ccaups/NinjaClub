@@ -23,42 +23,7 @@ exports.getById = async (req, res) => {
 };
 
 
-exports.create = async (req, res) => {
-  try {
 
-    if (
-      !req.body.FirstName ||
-      !req.body.LastName ||
-      !req.body.Address ||
-      !req.body.PhoneNumber ||
-      !req.body.Email
-
-    ) {
-      return res.status(400).send({ error: "Missing required fields." });
-    }
-
-
-    const newCoach = {
-      FirstName: req.body.FirstName,
-      LastName: req.body.LastName,
-      Address: req.body.Address,
-      PhoneNumber: req.body.PhoneNumber,
-      Email: req.body.Email,
-
-    };
-
-
-    const createdCoach = await db.Coaches.create(newCoach);
-
-
-    res
-      .status(201)
-      .location(`${Utils.getBaseURL(req)}/coaches/${createdCoach.CoachID}`)
-      .send(createdCoach);
-  } catch (error) {
-    res.status(500).send({ error: error.message });
-  }
-};
 
 
 exports.editById = async (req, res) => {
