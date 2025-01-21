@@ -1,14 +1,7 @@
 const { db } = require("../db");
 const Utils = require("./utlis");
 
-exports.getAll = async (req, res) => {
-  try {
-    const allEvents = await db.Events.findAll();
-    res.send(allEvents);
-  } catch (error) {
-    res.status(500).send({ error: error.message });
-  }
-};
+
 
 exports.getById = async (req, res) => {
   try {
