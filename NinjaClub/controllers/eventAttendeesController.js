@@ -1,14 +1,7 @@
 const { db } = require("../db");
 const Utils = require("./utlis");
 
-exports.getAll = async (req, res) => {
-  try {
-    const allAttendees = await db.EventAttendees.findAll();
-    res.send(allAttendees);
-  } catch (error) {
-    res.status(500).send({ error: error.message });
-  }
-};
+
 
 exports.getById = async (req, res) => {
   try {
@@ -80,19 +73,3 @@ exports.deleteById = async (req, res) => {
   }
 };
 
-const getAttendee = async (req, res) => {
-  const attendeeId = parseInt(req.params.id);
-
-  if (isNaN(attendeeId)) {
-    res.status(400).send({ error: `Invalid EventAttendeesID: ${req.params.id}` });
-    return null;
-  }
-
-  const attendee = await db.EventAttendees.findByPk(attendeeId);
-
-  if (!attendee) {
-    res.status(404).send({ error: "Event attendee not found" });
-    return null;
-  }
-  return attendee;
-};
