@@ -2,14 +2,6 @@ const { db } = require("../db");
 const Utils = require("./utlis"); // If you have a getBaseURL helper, otherwise remove
 
 
-exports.getAll = async (req, res) => {
-  try {
-    const allCoaches = await db.Coaches.findAll();
-    res.send(allCoaches);
-  } catch (error) {
-    res.status(500).send({ error: error.message });
-  }
-};
 
 
 exports.getById = async (req, res) => {
@@ -113,17 +105,3 @@ exports.deleteById = async (req, res) => {
 };
 
 
-const getCoach = async (req, res) => {
-  const idNumber = parseInt(req.params.id);
-  if (isNaN(idNumber)) {
-    res.status(400).send({ error: `Invalid coach ID ${req.params.id}` });
-    return null;
-  }
-
-  const coach = await db.Coaches.findByPk(idNumber);
-  if (!coach) {
-    res.status(404).send({ error: "Coach not found" });
-    return null;
-  }
-  return coach;
-};
