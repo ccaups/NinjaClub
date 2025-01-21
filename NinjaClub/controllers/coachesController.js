@@ -99,6 +99,18 @@ exports.editById = async (req, res) => {
 };
 
 
+exports.deleteById = async (req, res) => {
+  try {
+    const coach = await getCoach(req, res);
+    if (!coach) return;
+
+    await coach.destroy();
+    // 204 indicates success but no content in response
+    return res.status(204).send();
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+};
 
 
 const getCoach = async (req, res) => {
