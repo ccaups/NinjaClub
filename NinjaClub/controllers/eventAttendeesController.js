@@ -10,15 +10,7 @@ exports.getAll = async (req, res) => {
   }
 };
 
-exports.getById = async (req, res) => {
-  try {
-    const attendee = await getAttendee(req, res);
-    if (!attendee) return;
-    res.send(attendee);
-  } catch (error) {
-    res.status(500).send({ error: error.message });
-  }
-};
+
 
 exports.create = async (req, res) => {
   try {
