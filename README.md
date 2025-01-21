@@ -24,7 +24,7 @@ This document provides instructions for running the Ninja API, known issues, and
 1. Open your terminal and navigate to the project’s root folder.
 2. Run the following commands to install dependencies:
    ```bash
-   npm install-all
+   npm run install-all
    ```
 3. Wait for the installation to complete.
 
