@@ -51,42 +51,7 @@ exports.create = async (req, res) => {
   }
 };
 
-exports.editById = async (req, res) => {
-  try {
-    const eventId = parseInt(req.params.id);
 
-    if (isNaN(eventId)) {
-      return res.status(400).send({ error: `Invalid event ID: ${req.params.id}` });
-    }
-
-    const event = await db.Events.findByPk(eventId);
-    if (!event) {
-      return res.status(404).send({ error: 'Event not found' });
-    }
-
-    const { CoachID, Name, Date, Location, Description } = req.body;
-
-    if (!CoachID || !Name || !Date || !Location || !Description) {
-      return res.status(400).send({ error: 'Missing required fields' });
-    }
-
-    // Update the event fields
-    event.CoachID = CoachID;
-    event.Name = Name;
-    event.Date = Date;
-    event.Location = Location;
-    event.Description = Description;
-
-    await event.save();
-
-    res
-      .status(200)
-      .location(`${Utils.getBaseURL(req)}/events/${event.EventID}`)
-      .send(event);
-  } catch (error) {
-    res.status(500).send({ error: error.message });
-  }
-};
 
 
 exports.deleteById = async (req, res) => {
