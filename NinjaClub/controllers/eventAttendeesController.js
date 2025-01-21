@@ -67,17 +67,6 @@ exports.editById = async (req, res) => {
   }
 };
 
-exports.deleteById = async (req, res) => {
-  try {
-    const attendee = await getAttendee(req, res);
-    if (!attendee) return;
-
-    await attendee.destroy();
-    res.status(204).send();
-  } catch (error) {
-    res.status(500).send({ error: error.message });
-  }
-};
 
 const getAttendee = async (req, res) => {
   const attendeeId = parseInt(req.params.id);
