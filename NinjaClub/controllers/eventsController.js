@@ -20,36 +20,7 @@ exports.getById = async (req, res) => {
   }
 };
 
-exports.create = async (req, res) => {
-  try {
-    if (
-      !req.body.CoachID ||
-      !req.body.Name ||
-      !req.body.Date ||
-      !req.body.Location ||
-      !req.body.Description
-    ) {
-      return res.status(400).send({ error: "Missing required fields" });
-    }
 
-    const newEvent = {
-      CoachID: req.body.CoachID,
-      Name: req.body.Name,
-      Date: req.body.Date,
-      Location: req.body.Location,
-      Description: req.body.Description,
-    };
-
-    const createdEvent = await db.Events.create(newEvent);
-
-    res
-      .status(201)
-      .location(`${Utils.getBaseURL(req)}/events/${createdEvent.EventID}`)
-      .send(createdEvent);
-  } catch (error) {
-    res.status(500).send({ error: error.message });
-  }
-};
 
 exports.editById = async (req, res) => {
   try {
