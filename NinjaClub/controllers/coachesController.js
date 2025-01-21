@@ -61,6 +61,42 @@ exports.create = async (req, res) => {
 };
 
 
+exports.editById = async (req, res) => {
+  try {
+    const coach = await getCoach(req, res);
+    if (!coach) return;
+
+
+    if (
+      !req.body.FirstName ||
+      !req.body.LastName ||
+      !req.body.Address ||
+      !req.body.PhoneNumber ||
+      !req.body.Email
+
+
+    ) {
+      return res.status(400).send({ error: "Missing required fields." });
+    }
+
+    coach.FirstName = req.body.FirstName;
+    coach.LastName = req.body.LastName;
+    coach.Address = req.body.Address;
+    coach.PhoneNumber = req.body.PhoneNumber;
+    coach.Email = req.body.Email;
+
+
+    await coach.save();
+
+
+    return res
+      .status(200)
+      .location(`${Utils.getBaseURL(req)}/coaches/${coach.CoachID}`)
+      .send(coach);
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+};
 
 
 exports.deleteById = async (req, res) => {
