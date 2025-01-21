@@ -89,6 +89,17 @@ exports.editById = async (req, res) => {
 };
 
 
+exports.deleteById = async (req, res) => {
+  try {
+    const event = await getEvent(req, res);
+    if (!event) return;
+
+    await event.destroy();
+    return res.status(204).send();
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+};
 
 
 const getEvent = async (req, res) => {
