@@ -12,7 +12,15 @@ exports.getAll = async (req, res) => {
 };
 
 
-
+exports.getById = async (req, res) => {
+  try {
+    const coach = await getCoach(req, res);
+    if (!coach) return;
+    res.send(coach);
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+};
 
 
 exports.create = async (req, res) => {
