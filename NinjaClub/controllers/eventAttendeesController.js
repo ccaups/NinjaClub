@@ -45,7 +45,27 @@ exports.create = async (req, res) => {
   }
 };
 
+exports.editById = async (req, res) => {
+  try {
+    const attendee = await getAttendee(req, res);
+    if (!attendee) return;
 
+    if (!req.body.RSVPStatus) {
+      return res.status(400).send({ error: "Missing required field RSVPStatus" });
+    }
+
+    attendee.RSVPStatus = req.body.RSVPStatus;
+    await attendee.save();
+
+    res.status(200)
+      .location(
+        `${Utils.getBaseURL(req)}/eventAttendees/${attendee.EventAttendeesID}`
+      )
+      .send(attendee);
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+};
 
 exports.deleteById = async (req, res) => {
   try {
